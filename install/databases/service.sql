@@ -749,7 +749,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`meklis`@`%`*/ /*!50003 TRIGGER `to_history_updated` BEFORE UPDATE ON `eq_bindings` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `to_history_updated` BEFORE UPDATE ON `eq_bindings` FOR EACH ROW BEGIN
 INSERT INTO eq_bindings_history
 SELECT *, 'UPDATED', NOW() FROM eq_bindings WHERE id = OLD.id;
 END */;;
@@ -767,7 +767,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`meklis`@`%`*/ /*!50003 TRIGGER `to_history_deleted` BEFORE DELETE ON `eq_bindings` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `to_history_deleted` BEFORE DELETE ON `eq_bindings` FOR EACH ROW BEGIN
 INSERT INTO eq_bindings_history
 SELECT *, 'DELETED', NOW() FROM eq_bindings WHERE id = OLD.id;
 END */;;
@@ -1097,7 +1097,7 @@ ALTER DATABASE `service` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`meklis`@`%`*/ /*!50003 TRIGGER `update_log` AFTER UPDATE ON `equipment` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `update_log` AFTER UPDATE ON `equipment` FOR EACH ROW BEGIN
        IF NEW.ping != OLD.ping THEN
            INSERT INTO equipment_pinger_log (equipment, status) VALUES (NEW.id, NEW.ping);
         END IF;
@@ -1449,7 +1449,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`meklis`@`%`*/ /*!50003 TRIGGER `balance` BEFORE INSERT ON `paymants` FOR EACH ROW BEGIN 
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `balance` BEFORE INSERT ON `paymants` FOR EACH ROW BEGIN 
 SET @agree = NEW.agreement;
 SET @money = NEW.money;
 UPDATE clients SET balance = balance+@money WHERE id = @agree;
@@ -1471,7 +1471,7 @@ ALTER DATABASE `service` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`meklis`@`%`*/ /*!50003 TRIGGER `minus` BEFORE DELETE ON `paymants` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `minus` BEFORE DELETE ON `paymants` FOR EACH ROW BEGIN
 UPDATE clients SET balance = balance - OLD.money WHERE id = OLD.agreement;
 INSERT INTO paymants_deleted
 SELECT * FROM paymants WHERE id =OLD.id;
@@ -2459,7 +2459,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`meklis`@`%` FUNCTION `days_in_month`() RETURNS int
+CREATE DEFINER=`service`@`localhost` FUNCTION `days_in_month`() RETURNS int
 BEGIN
     RETURN DAYOFMONTH(LAST_DAY(NOW()));
 END ;;
@@ -2478,7 +2478,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`meklis`@`%` FUNCTION `days_to_end_month`() RETURNS int
+CREATE DEFINER=`service`@`localhost` FUNCTION `days_to_end_month`() RETURNS int
 BEGIN
     RETURN DAYOFMONTH(LAST_DAY(NOW())) - DAYOFMONTH(NOW()) + 1;
 END ;;
@@ -2497,7 +2497,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`meklis`@`%` FUNCTION `first_date`(`curr_date` datetime) RETURNS datetime
+CREATE DEFINER=`service`@`localhost` FUNCTION `first_date`(`curr_date` datetime) RETURNS datetime
 BEGIN
     return date_add(curr_date,interval -DAY(curr_date)+1 DAY)  ;
 END ;;
@@ -2516,7 +2516,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`meklis`@`%` FUNCTION `get_free_agreement`() RETURNS int
+CREATE DEFINER=`service`@`localhost` FUNCTION `get_free_agreement`() RETURNS int
     READS SQL DATA
     DETERMINISTIC
 BEGIN

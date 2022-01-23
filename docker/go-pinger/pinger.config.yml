@@ -13,7 +13,7 @@ system:
 prometheus:
   path: /metrics
   enabled: true
-  port: 2112
+  port: 2111
 
 #Конфигруция апи
 api:

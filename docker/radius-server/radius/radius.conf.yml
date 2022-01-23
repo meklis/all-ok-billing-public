@@ -14,7 +14,7 @@ logger:
 prometheus:
   path: /metrics
   enabled: true
-  port: 2112
+  port: 2110
   detailed: true
 
 #Profiler pprof. Must be disabled in production

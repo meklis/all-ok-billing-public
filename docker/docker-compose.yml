@@ -15,8 +15,6 @@ services:
     <<: *defaults
     build: ./go-pinger
     container_name: icmp-pinger
-    ports:
-      - "2180:2112"
     network_mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro

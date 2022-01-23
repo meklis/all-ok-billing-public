@@ -15,10 +15,6 @@ services:
     <<: *defaults
     build: radius
     container_name: radius-server
+    network_mode: host
     volumes:
     - "/etc/hosts:/etc/hosts"
-    ports:
-    - "2113:2112"
-    - "2155:2155"
-    - "0.0.0.0:1812:1812/udp"
-

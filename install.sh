@@ -57,7 +57,7 @@ chmod +x /usr/local/bin/docker-compose
 echo "Configure files ..." && sleep 1
 mkdir -p /var/log/all-ok-billing
 mkdir -p /www
-cp -R ./* /www
+cp -rT ./ /www
 cd /www
 chown -R www-data:www-data /www
 chown -R www-data:www-data /var/log/all-ok-billing

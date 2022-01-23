@@ -17,8 +17,7 @@
   },
   "require": {
     "mpdf/mpdf": "^8.0",
-    "meklis/billing-network-helpers": "dev-master",
-    "meklis/switcher-core": "dev-master",
+    "meklis/switcher-core": "2.1.*",
     "meklis/trinity-tv": "dev-master",
     "vlucas/phpdotenv": "^4.1@dev",
     "ext-json": "*",
@@ -32,7 +31,7 @@
     "zircote/swagger-php": "dev-master",
     "meklis/ipv4-subnet-calculator": "^3.1",
     "ext-pdo": "*",
-    "guzzlehttp/guzzle": "7.4.x-dev",
+    "guzzlehttp/guzzle": "dev-master",
     "php-curl-class/php-curl-class": "dev-master",
     "meklis/wildcore-api-client": "dev-master"
   },

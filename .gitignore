@@ -7,6 +7,6 @@ vendor
 service/res/uploads
 **.save
 composer.lock
-.env
+/.env
 configs
 
