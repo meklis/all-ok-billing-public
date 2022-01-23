@@ -1,0 +1,144 @@
+AGREEMENT: Offer
+PERSONAL_AREA_LABEL: Personal account
+PRICE_NAME: Tariff
+PRICE_STATE: State
+TRAFFIC_ON_PORT: Traffic on port
+QUESTION_LIST: Question list
+RECORDS_NOT_FOUND: Records not found
+PAGE_NOT_FOUND: 404 Page not found
+NO_REQUIRED_FIELDS: fields must be filled
+PASSWORDS_NOT_MATCH: Passwords do not match
+INCORRECT_OLD_PASSWORD: Incorrect old password
+PASSWORD_SUCCESS_CHANGED: Password succes changed
+QUESTION_SUCCESS_CREATED: Application created successfully
+FROST_ACTIVATION_NOT_ALLOWED: Suspension of service is not possible, less than a day has passed
+FROST_ACTIVATION_NOT_FOUND: No services found to suspend. To suspend services, contact the Call Center
+DEFROST_ACTIVATION_NEGATIVE_BALANCE: Service renewal is possible only with a positive balance
+DEFROST_ACTIVATION_NOT_FOUND: No services found for automatic renewal. To resume services, contact the Call Center
+NOT_ALLOW_ENABLE_CREDIT_PERIOD: You can activate a credit only once. To re-use the service, you need to replenish the account so that the balance is positive
+FROST_SUCCESS: Services Suspended Successfully
+DEFROST_SUCCESS: Services successfully restored
+ENABLE_CREDIT_PERIOD_SUCCESS: Credit period successfully connected
+UNKNOWN_ERROR: An unexpected error occurred while working. Call the Call Center
+PAGE_CHANGE_PASSWORD: Password Changes
+PAGE_MAIN: Home page
+PAGE_PAYMENTS: Paymants
+PAGE_PAY: Pay
+PAGE_SERVICE_CONTROL: Service management
+PAGE_PORT: Port
+PAGE_CONTACTS: Contacts
+PAGE_QUESTIONS: Requestion
+PAGE_CREATE_QUESTION: Leave a requestion
+PAGE_OFFICIAL_SITE: Website
+BTN_EXIT: Exit
+SERVICES_LIST: Services list
+CONTACTS_DATA: Contacts
+NAME: Name
+PRICE: Price
+ACTIVATED_FROM: Activated from
+SERVICE_ACTIVATED: Active
+SERVICE_FROSTED: Paused
+APPEAL: Appeal
+PHONE_NUMBER: Phone number
+INET_PROVIDER: Inet provider
+LAST_20_PAYMENTS: Last 20 payments
+DATE: Date
+AMOUNT: Sum
+COMMENT: Comments
+PAY_OVER_LIQPAY: Pay over LiqPay
+PAY_LIQPAY_DETAIL: Payments are credited within 15 minutes
+PAY_LIQPAY_AMOUNT_FIELD_DESCR: Payment sum
+PAY_LIQPAY_BTN: Continue
+PAY_REGISTERED_ON: Registered
+SUMMARY_AMOUNT: Payment sum
+SERVICE_CONTROL_STOP_START: Suspension of services  / Service recovery
+SERVICE_CONTROL_STOP_START_DESCR: You  can independently manage your services. off and resum (restart) them.
+SERVICE_CONTROL_STOP_START_LIMIT: Some services cannot be managed in this way, contact the call center for details
+SERVICE_CONTROL_STOP_START_PERIOD: Attention! suspend or resume services only once a day
+SERVICE_CONTROL_BTN_STOP: Off  services
+SERVICE_CONTROL_BTN_START: Restart services
+BALANCE: Balance
+UAH: Uah
+PAYED_TO: Payed to
+SERVICES_NOT_FOUND: No active sales
+SERVICE_CONTROL_CREDIT: Credit period
+SERVICE_CONTROL_CREDIT_ACTIVATE: Activate credit period
+SERVICE_CONTROL_CREDIT_DESCR: The credit period activation allows you to activate the service for 4 days, also with a negative balance
+SERVICE_CONTROL_CREDIT_PERIOD: Attention! The credit period is provided once. After its completion it is necessary to replenish the account.
+SERVICE_CONTROL_CREDIT_ACTIVATED: Credit period is already  activated.
+SERVICE_CONTROL_CHANGE_PWD: Change password in your account
+SERVICE_CONTROL_CHANGE_PWD_BTN: Change password in your account
+PWD_OLD:  Old password
+PWD_NEW:  New password
+PWD_NEW_REPEAT: Repeat a new password
+PWD_CHANGE_BTN: Change  a password
+PWD_MSG_SUCCESS: Password was successfully changed! Next time you will be asked for a  new password
+CONTACTS:  Contacts
+QUEST_PAGE: Page
+QUEST_BTN_NEXT: Next
+QUEST_BTN_FIRST: First
+QUEST_BTN_PREV: Previous
+QUEST_BTN_LAST: Last
+PUB_OFFER: Public offer
+QUEST_CONTACT_PHONE: Contacts
+QUEST_TEXT_QUEST: Application text
+QUEST_BTN_CREATE:   Leave your application
+QUEST_IN_PROCCESS: Taken to work
+QUEST_DONE: Completed
+QUEST_CANCELED: Canceled
+QUEST_WAIT: Awaiting confirmation
+QUEST_COMPLETION_CERTIFICATE:  Act of  acceptance
+QUEST_NOT_FOUND: No applications  found
+TIME: Time
+REASON: Reason
+QUEST_STATUS: Status
+NEIGHBOR_AGREEMENTS: Смежные договора
+NEIGHBOR_AGREEMENTS_DESCRIPTION: Ниже перечислены договора закрепленные за этим же адресом
+REGISTERED_DEVICES: Зарегистрированные устройства
+
+OTT_SERVICES: 'OTT Services (iptv)'
+OTT_NOT_ACTIVATED: 'Services not activated'
+OTT_DETAILED_INFO: >
+    To start working with sweet.tv, you need to activate a tariff suitable for you (S, M, L). <br>
+    You can find out more about tariffs at <a href='https://sweet.tv/tariffs' target='_blank'> this link </a> <br>
+    After activating the service, you will need to register your devices on the network through one of the methods (by code, by MAC or by generating a playlist). <br>
+
+OTT_CHOOSE_PRICE: 'Activate the service that suits you'
+OTT_LINK_PRICES_LIST: ' '
+ACTIVATE_PRICE: 'Activate'
+SERVICE_SUCCESS_ACTIVATED: 'Service success activated'
+OTT_ACTIVATED_SERVICE_LIST: 'Activated services'
+OTT_REGISTRATION_INSTRUCTION: >
+  <h4> Currently, services from sweet.tv are provided free of charge for our subscribers </h4>
+  Select the activated service from the list below and the device registration method. <br>
+   <span style = 'text-align: left'>
+  <li> <b> Registration by code </b> - on your device, when you start the application, the activation code will be displayed (the device should be on the GoldenNet network) </li>
+  <li> <b> Registration by MAC </b> - when using the application on a PC, you may need to enter the MAC address (it will be located in the 'About' box) </li>
+  <li> <b> Generate playlist </b> - allows you to create a playlist. Use this method if your device does not support sweet.tv applications </li>
+  <br>
+  </span>
+  Instructions for installing applications from sweet.tv can be found at <a href='https://sweet.tv/devices' target='_blank'> this link </a> <br> <br>
+
+OTT_CHOOSE_ACTIVATION: 'Choose activation'
+OTT_ACTIVATION_CODE: 'Activation code <small> (indicated on your device / application from Trinity) </small>'
+OTT_REG_BY_CODE: 'By code'
+OTT_REG_BY_MAC: 'By MAC/UUID'
+OTT_PLAYLIST_GENERATION: 'Playlist Generation'
+OTT_GENERATE_PLAYLIST: 'Generate playlist'
+OTT_REG_DEVICE: 'Register device'
+OTT_UUID_NOT_REQUIRED: '(Indicated if indicated in the app, optional)'
+OTT_REG_PLAYLIST: 'Playlist'
+OTT_ADD_DEVICE: 'Register a new device'
+OTT_DELETE_DEVICE: 'Delete device'
+OTT_REGISTERED_DEVICES: 'Registered Devices'
+OTT_REGISTRATION_DATE: 'Registration date'
+OTT_PRICE_NAME: 'Service'
+OTT_MAC_ADDR: device's MAC
+OTT_UUID_PLAYLIST: 'UUID / Playlist'
+OTT_ACTIONS: 'Actions'
+OTT_INCORRECT_CODE: 'Invalid code'
+OTT_DEVICE_REGISTRATION_LIMIT: 'The maximum number of registered devices has been reached. Remove old old devices'
+OTT_DEVICE_SUCCESS_REGISTERED: 'Device successfully registered'
+OTT_DEVICE_SUCCESS_DELETED: 'Device successfully removed'
+OTT_NOT_FOUND_REGISTERED_DEVICES: No registered devices found
+INCORRECT_INPUT_DATA: 'The data transferred is incorrect, check'

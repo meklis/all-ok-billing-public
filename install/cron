@@ -1,0 +1,18 @@
+#WALKERS
+0	    *	    *	    *	    *	/www/cgi/walkers/untag_fdb.php
+0       *       *       *       *       /www/cgi/walkers/arps.php
+
+
+#Billing balance recalculate + ACS
+00    00    *    *    *    /usr/bin/mysql -uservice -pservice service < /www/cgi/billing_recalc.sql
+05    00    *    *    *    /www/cgi/disable_service_shedule.php
+
+#SMS notifications
+10    12    *    *    *    /usr/bin/php /www/cgi/notice_credit_1day.php
+20    12    *    *    *    /usr/bin/php /www/cgi/notice_credit_4day.php
+30    12    *    *    *    /usr/bin/php /www/cgi/notice_credit_9day.php
+*/1   *     *    *    *    /usr/bin/php /www/cgi/sms_sender.php >/dev/null 2>&1
+
+#Calculate payed questions
+55    23    *    *    *    /www/cgi/calc_payed_questions.php
+

@@ -1,0 +1,98 @@
+.schedule-table          { overflow-y: auto; height: 100px; }
+.schedule-table thead th { position: sticky; top: 0; }
+
+
+.schedule-table {
+    border: 1px solid #A0A0A0;
+    border-collapse: collapse;
+    overflow: scroll;
+}
+.schedule-table thead tr th {
+    background: #2A3F54;
+    color: #FAFAFA;
+    padding: 5px;
+    text-align: center !important;
+}
+.schedule-table tbody tr th {
+    background: #2A3F54;
+    color: #FAFAFA;
+    text-align: center !important;
+}
+.schedule-table tbody tr td {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.schedule-day-minutes {
+    height: 19px !important;
+    width: 90px;
+    margin: 0;
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: center !important;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.schedule-day-minutes a {
+    height: 19px !important;
+    width: 90px;
+    margin: 0;
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: center !important;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.schedule-day-minutes-disabled {
+    height: 19px !important;
+    width: 90px;
+    margin: 0;
+    padding: 1px;
+    font-size: 11px;
+    text-align: center;
+    vertical-align: center !important;
+    color: gray;
+    background: #EAEAEA;
+    text-decoration: none;
+    display: block;
+}
+.schedule-day-minutes:hover {
+    z-index: 1;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 1px !important;
+    background: #2A3F54;
+    color: white !important;
+    display: block;
+    height: 19px !important;
+}
+.schedule-day-minutes-active {
+    z-index: 1;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 1px !important;
+    background: #2A3F54;
+    color: #FAFAFA !important;
+    display: block;
+    height: 19px !important;
+}
+
+.schedule-busy {
+    background: darkred !important;
+    color: #FAFAFA;
+}
+.schedule-free {
+    background: darkgreen !important;
+    color: #FAFAFA;
+}
+.schedule-not-fit {
+    background: #918c02 !important;
+    color: #FAFAFA;
+}
+.schedule-disabled-day {
+
+}

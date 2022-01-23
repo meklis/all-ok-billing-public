@@ -1,0 +1,31 @@
+version: '3.5'
+
+x-defaults: &defaults
+  restart: always
+  logging:
+    driver: json-file
+    options:
+      max-size: "50m"
+      max-file: "5"
+  env_file:
+    - ../.env
+
+services:
+  icmp-pinger:
+    <<: *defaults
+    build: ./go-pinger
+    container_name: icmp-pinger
+    ports:
+      - "2180:2112"
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/hosts:/etc/hosts:ro
+  billing-shedule:
+    <<: *defaults
+    build: ./shedule
+    network_mode: host
+    container_name: billing-shedule
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/hosts:/etc/hosts:ro

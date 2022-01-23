@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+        <link rel="stylesheet" href="schedule.css">
+    </head>
+    <body>
+    <div id="choose-time"></div>
+    <div style="width: 1000px; max-height: 600px; overflow: scroll">
+        <div id="schedule-table"></div>
+    </div>
+
+    </body>
+    <script src="/res/js/jquery.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="/schedule.js"></script>
+    <script>
+        const days = {
+            'start': '2020-11-09',
+            'end': '2020-12-01',
+        };
+        const hours = {
+            'start': 8,
+            'end': 21,
+        };
+        const stepInMinutes = 15;
+        const schedules = [
+            {date: '2020-11-10 09:00:00', status: 'free' },
+            {date: '2020-11-09 09:00:00', status: 'free' },
+            {date: '2020-11-10 09:30:00', status: 'busy'},
+            {date: '2020-11-10 09:45:00', status: 'busy'},
+            {date: '2020-11-10 10:45:00', status: 'free'},
+            {date: '2020-11-10 11:00:00', status: 'free'},
+        ];
+        const disabledDays = [
+            '2020-11-11 09:00:00',
+            '2020-11-11 09:15:00',
+            '2020-11-11 09:30:00',
+            '2020-11-11 09:45:00',
+            '2020-11-11 10:45:00',
+        ];
+        var schedule = new Schedule(days, hours, stepInMinutes);
+        schedule.disablePastTime(true).setSchedules(schedules).setDisabledDays(disabledDays).render('#schedule-table')
+        schedule.bind(function (date, event) {
+            console.log(event);
+            date = moment(date * 1000).format("YYYY-MM-DD HH:mm:ss")
+            //$('#choose-time').html(`<h3>Выбрано время: ${date}</h3>`);
+            console.log(date)
+        }, true)
+    </script>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>canvasExample</title>
+    <style>
+        #example {
+            border: 1px #000 solid;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.2/fabric.js"></script>
+</head>
+<body>
+<a download="image.png" id="download" onclick="save()">Save</a>
+<div style="background: lightgrey; width: 800px; height: 600px" >
+<canvas height='600' width='800' id='canvas' >Обновите браузер</canvas>
+</div>
+<script>
+    // var example = new fabric.Canvas('example');
+    // example.backgroundColor = 'yellow';
+    // fabric.Image.fromURL('https://expert.chistov.pro/upload/iblock/928/92806ada1083591f55207a21b7c77d5a.jpg', function(myImg) {
+    //     example.setBackgroundImage(myImg);
+    // });
+    var canvas = this.__canvas = new fabric.Canvas('canvas', {
+        isDrawingMode: true
+    });
+    canvas.freeDrawingBrush.width = 20;
+
+    function save(){
+        var download = document.getElementById("download");
+        var image = document.getElementsByTagName("canvas")[0].toDataURL("image/png");
+        console.log(image);
+        download.setAttribute("href", image.replace("image/png", "image/octet-stream"));
+
+    }
+</script>
+</body>
+</html>

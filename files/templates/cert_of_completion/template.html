@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title></title>
+</head>
+<body lang="ru-RU" dir="ltr">
+
+<font face="Times New Roman, serif">
+<table>
+    <tr>
+        <td><img src="/www/files/templates/cert_of_completion/logo.png" width="200"></td>
+        <td>
+            <p align="center">
+                    <i>
+                        <b>
+                            Акт № <u>{{ACT_NUMBER}}</u> від <u> {{ACT_DATE}}</u>
+                            <br>
+                            <br>
+                            прийому-передачі виконаних робіт (надання послуг)
+                        </b>
+                    </i>
+            </p>
+        </td>
+    </tr>
+</table>
+<p align="center">
+    Виконавець <b><i></i></b> з одної сторони і замовник <b><i>{{ABON_NAME}}</i></b>, який проживає за адресою <b><i>{{ABON_ADDR}}</i></b>
+<br><br>
+<i>АТК про те що виконавець виконав, а замовник прийняв наступні роботи:</i>
+<br><br>
+</p>
+<div style="height: 360px; overflow: hidden">
+<table width="100%"  style="border-collapse: collapse;">
+    <tr valign="top">
+        <th width="33" style="border: 1px solid black; padding: 2px;">
+            <p>№</p>
+        </th>
+        <th width="250" style="border: 1px solid black; padding: 2px;">
+            Назва робіт/послуг
+        </th>
+        <th width="119" style="border: 1px solid black; padding: 2px;">
+            Номер договора
+        </th>
+        <th width="40" style="border: 1px solid black; padding: 2px;">
+            Кіл.
+        </th>
+        <th width="52" style="border: 1px solid black; padding: 2px;">
+            Ціна
+        </th>
+        <th width="70" style="border: 1px solid black; padding: 2px;">
+            Сума
+        </th>
+    </tr>
+    {{COMPLETIONS}}
+    <tr>
+        <td colspan="4" >
+
+        </td>
+        <td   valign="top" style="border: 1px solid black;">
+            <b>Всього:</b>
+        </td>
+        <td   valign="top" style="border: 1px solid black;">
+            {{SUMMARY_AMOUNT}}
+        </td>
+    </tr>
+</table>
+    <br>
+    Загальна вартість виконаних робіт склала <b><i>{{SUMMARY_AMOUNT_AS_TEXT}}</i></b>
+
+</div>
+<p>
+    <br/>
+</p>
+<p>
+    <i>Роботи виконані у встановлені терміни, в повному обсязі і з належною якістю. Претензій один до одного сторони не мають.</i>
+</p>
+<img src="/www/files/templates/cert_of_completion/subscribe.jpg"  style="margin-left: 0px; margin-right: -50px;">
+
+</font>
+
+ </body>
+</html>

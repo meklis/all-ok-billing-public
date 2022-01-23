@@ -1,0 +1,31 @@
+server {
+        listen 80;
+        listen [::]:80;
+        root /www/api_v2/public;
+        index index.php;
+        server_name apiv2.*;
+
+#       listen 443 ssl;
+#       ssl_certificate     /etc/nginx/all-ok-billing/ssl/bundled.crt;
+#       ssl_certificate_key /etc/nginx/all-ok-billing/ssl/private.key;
+#       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+#       ssl_ciphers         HIGH:!aNULL:!MD5;
+#       if ($ssl_protocol = "") {rewrite ^ https://$server_name$request_uri? permanent;}
+
+
+        access_log /var/log/nginx/all-ok-billing.apiv2.access.log;
+        error_log  /var/log/nginx/all-ok-billing.apiv2.error.log;
+
+                                                        
+   	   location / {
+           try_files $uri $uri/ /index.php$is_args$args;
+	   }
+        location ~ \.php$ {
+           fastcgi_pass    unix:/var/run/php/php7.4-fpm.sock;
+           fastcgi_index index.php;
+           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+           include        fastcgi_params;
+        }
+}
+
+                           

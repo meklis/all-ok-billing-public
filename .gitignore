@@ -1,0 +1,12 @@
+apiLog
+gwLog
+.idea
+vendor
+./apiLog
+./gwLog
+service/res/uploads
+**.save
+composer.lock
+.env
+configs
+

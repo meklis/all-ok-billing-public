@@ -1,0 +1,149 @@
+AGREEMENT: Договір
+PERSONAL_AREA_LABEL: Особистий Кабінет
+PAGE_MAIN: Головна
+PAGE_PAYMENTS: Платежі
+PAGE_PAY: Оплата
+PAGE_SERVICE_CONTROL: Керування послугами
+PAGE_PORT: Порт
+PAGE_CONTACTS: Контакти
+PAGE_QUESTIONS: Заявки
+PAGE_CREATE_QUESTION: Залишити заявку
+PAGE_OFFICIAL_SITE: Сайт
+BTN_EXIT: Вихід
+SERVICES_LIST: Перелік послуг
+CONTACTS_DATA: Контактні дані
+NAME: Ім'я
+PRICE_NAME: Тариф
+PRICE: Прайс
+ACTIVATED_FROM: Активовано з
+SERVICE_ACTIVATED: Активна
+SERVICE_FROSTED: Приостановлена
+APPEAL: Звернення
+PHONE_NUMBER: Номер телефону
+INET_PROVIDER: Інтернет Провайдер
+LAST_20_PAYMENTS: Платежі
+DATE: Дата
+AMOUNT: Сума
+COMMENT: Коментар (якщо є)
+PAY_OVER_LIQPAY: Оплата через LiqPay
+PAY_LIQPAY_DETAIL: Платежі зараховуються протягом 15хв
+PAY_LIQPAY_AMOUNT_FIELD_DESCR: Сума оплати (грн)
+PAY_LIQPAY_BTN: Продовжити
+PAY_REGISTERED_ON: Зареєсровано на
+SUMMARY_AMOUNT: Сума оплати
+SERVICE_CONTROL_STOP_START: Призупинення / Поновлення послуг
+SERVICE_CONTROL_STOP_START_DESCR: Ви можете самостійно керувати своїми послугами, припиняти та відновлювати їх
+SERVICE_CONTROL_STOP_START_LIMIT: Окремі послуги не можуть керуватись автоматично , за деталями звертайтесь до колл-центру
+SERVICE_CONTROL_STOP_START_PERIOD: Увага! призупинити або поновити послуги можливо лише раз на добу
+SERVICE_CONTROL_BTN_STOP: Призупинити послуги
+SERVICE_CONTROL_BTN_START: Відновити послуги
+BALANCE: баланс
+UAH: грн
+PAYED_TO: сплачено до
+SERVICES_NOT_FOUND: Немає активних послуг
+SERVICE_CONTROL_CREDIT: Кредитний період
+SERVICE_CONTROL_CREDIT_ACTIVATE: Активувати кредитний період
+SERVICE_CONTROL_CREDIT_DESCR: Доступний кредитний період на 4 дні. Наступний за ним період буде скорочено на ці 4 дні.
+SERVICE_CONTROL_CREDIT_PERIOD: Увага! Кредитний період надається одноразово. Після його  завершення необхідно поповнити рахунок.
+SERVICE_CONTROL_CREDIT_ACTIVATED: Кредитний період вже активовано
+SERVICE_CONTROL_CHANGE_PWD: Зміна паролю в особистий кабінет
+SERVICE_CONTROL_CHANGE_PWD_BTN: Змінити пароль в особистий кабінет
+PWD_OLD: Старий пароль
+PWD_NEW: Новий пароль
+PWD_NEW_REPEAT: Повторіть новий пароль
+PWD_CHANGE_BTN: Змінити пароль
+PWD_MSG_SUCCESS: Пароль успешно изменен! При следующем входе будет запрошен новый пароль
+CONTACTS:  Контакти
+QUEST_PAGE: Сторiнка
+QUEST_BTN_NEXT: Наступна
+QUEST_BTN_FIRST: Перша
+QUEST_BTN_PREV: Попередня
+QUEST_BTN_LAST: Остання
+PUB_OFFER: Публічний договір
+QUEST_CONTACT_PHONE: Контактний телефон
+QUEST_TEXT_QUEST: Текст заявки
+QUEST_BTN_CREATE:   Залишити заявку
+QUEST_IN_PROCCESS: Взята в роботу
+QUEST_DONE: Виконана
+QUEST_CANCELED: Вiдмiнена
+QUEST_WAIT: Очiкуе пiдтвердження
+QUEST_COMPLETION_CERTIFICATE: Акт виконанних робiт
+QUEST_NOT_FOUND: Заявок не знайдено
+TIME: Час
+REASON: Причина
+QUEST_STATUS: Статус
+COMPANY_ADDR: Крюковщина, Жулянська вулиця, 1д
+PRICE_STATE: 'Стан'
+RECORDS_NOT_FOUND: Записів не знайдено
+PAGE_NOT_FOUND: 404 Сторінка не знайдена
+NO_REQUIRED_FIELDS: Не всі поля заповнені
+PASSWORDS_NOT_MATCH: Паролі не співпадають
+INCORRECT_OLD_PASSWORD: Не вірний старий пароль
+PASSWORD_SUCCESS_CHANGED: Пароль успішно змінений
+QUESTION_SUCCESS_CREATED: Заявка успішно створена
+FROST_ACTIVATION_NOT_ALLOWED: Призупинення послуги неможливо, пройшло менше доби
+FROST_ACTIVATION_NOT_FOUND: Не знайдено послуг для призупинення. Що б призупинити послуги зверніться в Call-центр
+DEFROST_ACTIVATION_NEGATIVE_BALANCE: Відновлення послуг можливо тільки при позитивному балансі
+DEFROST_ACTIVATION_NOT_FOUND: Не знайдено послуг для автоматичного відновлення. Що б відновити послуги зверніться в Call-центр
+#NOT_ALLOW_ENABLE_CREDIT_PERIOD: Активувати кредитний можливо тільки один раз. Що б повторно восспользоваться послугою - необхідно поповнити рахунок, що б баланс був позитивним
+NOT_ALLOW_ENABLE_CREDIT_PERIOD: Кредитний період вже активовано. Повторна активація можлива після поповнення рахунку
+FROST_SUCCESS: Послуги успішно призупинені
+DEFROST_SUCCESS: Послуги успішно відновлені
+ENABLE_CREDIT_PERIOD_SUCCESS: Кредитний період успішно підключений
+UNKNOWN_ERROR: Виникла непередбачена помилка при роботі. Зверніться в Call-центр
+QUESTION_LIST: Список заявок
+PAGE_CHANGE_PASSWORD: Зміна пароля
+TRAFFIC_ON_PORT: Трафік
+NEIGHBOR_AGREEMENTS: Суміжні договори
+NEIGHBOR_AGREEMENTS_DESCRIPTION: Нижче перераховані договори закріплені за такою же адресою
+REGISTERED_DEVICES: Зареєстровані пристрої
+
+
+OTT_SERVICES: 'Послуги OTT (iptv)'
+OTT_NOT_ACTIVATED: 'Послуга не підключена'
+OTT_DETAILED_INFO: >
+  Для початку роботи з sweet.tv необхідно активувати відповідний для вас тариф (S, M, L). <br>
+  Детальніше про тарифи можна дізнатися за <a href='https://sweet.tv/tariffs' target='_blank'> цим посиланням </a> <br>
+  Після активації послуги вам необхідно буде зареєструвати свої пристрої в мережі через один із способів (за кодом, за MAC або згенерувавши плейлист). <br>
+
+
+
+OTT_CHOOSE_PRICE: 'Активуйте необхідну послугу'
+OTT_LINK_PRICES_LIST: ' '
+ACTIVATE_PRICE: 'Активувати'
+SERVICE_SUCCESS_ACTIVATED: 'Послуга успішно підключена'
+OTT_ACTIVATED_SERVICE_LIST: 'Підключені послуги'
+OTT_REGISTRATION_INSTRUCTION: >
+  <H4> В даний момент послуги від sweet.tv надаються безкоштовно для абонентів GoldenNet </h4>
+  Виберіть активовану послугу зі списку нижче і спосіб реєстрації пристрою. <br>
+  <Span style = 'text-align: left'>
+  <Li> <b> Реєстрація за кодом </b> - на вашому пристрої, під час запуску програми буде відображений код для активації (пристрій повинен знаходиться в мережі GoldenNet) </li>
+  <Li> <b> Реєстрація по MAC </b> - при використанні програми на ПК може знадобитися ввести MAC-адресу (він буде знаходиться в блоці 'Про програму') </li>
+  <Li> <b> Генерація плейлиста </b> - дозволяє створювати плейлист. Використовуйте цей спосіб, якщо ваш пристрій не підтримує додатки sweet.tv </li>
+  <br>
+  </Span>
+  Інструкції по інсталяції додатків від sweet.tv ви зможете знайти за <a href='https://sweet.tv/devices' target='_blank'> цим посиланням </a> <br> <br>
+
+OTT_CHOOSE_ACTIVATION: 'Виберіть активацію'
+OTT_ACTIVATION_CODE: 'Код активації <small> (вказано на вашому пристрої / в додатку від Trinity) </ small>'
+OTT_REG_BY_CODE: 'За кодом'
+OTT_REG_BY_MAC: 'По MAC/UUID'
+OTT_PLAYLIST_GENERATION: 'Генерація плейлиста'
+OTT_GENERATE_PLAYLIST: 'Згенерувати плейлист'
+OTT_REG_DEVICE: 'Зареєструвати пристрій'
+OTT_UUID_NOT_REQUIRED: (Зазначається у разі, якщо вказано в додатку, необов'язкове)
+OTT_REG_PLAYLIST: 'Плейлист'
+OTT_ADD_DEVICE: 'Зареєструвати новий пристрій'
+OTT_DELETE_DEVICE: 'Видалити пристрій'
+OTT_REGISTERED_DEVICES: 'Зареєстровані пристрої'
+OTT_REGISTRATION_DATE: 'Дата реєстрації'
+OTT_PRICE_NAME: 'Послуга'
+OTT_MAC_ADDR: 'MAC-адреса пристрою'
+OTT_UUID_PLAYLIST: 'UUID / Плейлист'
+OTT_ACTIONS: 'Дії'
+OTT_INCORRECT_CODE: 'Невірний код'
+OTT_DEVICE_REGISTRATION_LIMIT: 'Досягнуто максимальну кількість зареєстрованих пристроїв. Видаліть старі старі пристрої'
+OTT_DEVICE_SUCCESS_REGISTERED: 'Пристрій успішно зареєстровано'
+OTT_DEVICE_SUCCESS_DELETED: 'Пристрій успішно видалено'
+OTT_NOT_FOUND_REGISTERED_DEVICES: Не знайдено зареєстрованих пристроїв
+INCORRECT_INPUT_DATA: 'Перевірте корректність введених даних'

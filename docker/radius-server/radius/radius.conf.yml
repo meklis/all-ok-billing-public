@@ -1,0 +1,59 @@
+
+
+#Logger configuration
+# @TODO на данный момент реализован только вывод в консоль. Ориентировано для работы в docker
+logger:
+  console:
+    enabled: true
+    enable_color: false
+    #Log levels. For production use - level 4, debug - 6
+    log_level: 6
+    print_file: true
+
+#Prometheus configuration
+prometheus:
+  path: /metrics
+  enabled: true
+  port: 2112
+  detailed: true
+
+#Profiler pprof. Must be disabled in production
+profiler:
+  port: 2155
+  enabled: true
+
+#Конфигурация радиус-сервера
+radius:
+  listen_addr: ${RADIUS_LISTEN_ADDR}
+  # Такие параметры как secret можно вынести в переменные окружения. Для этого вместо значения secret необходимо указать ${RADIUS_SECRET}
+  # где RADIUS_SECRET - переменная окружения
+  secret: ${SECRET}
+  #Нужно ли проверять и формировать запрос с Agent-Сircuit-Id, Agent-Remote-Id.
+  agent_parsing_enabled: false
+
+#Конфигурирование работы API.
+api:
+  auth:
+    caching:
+      actualize_timeout: 1m # Как часто нужно актуализироовать данные с API, даже если они есть в кеше
+      enabled: true
+      expire_timeout: 12h
+    alive_checking:
+      enabled: false
+      disable_timeout: 1s # На это время API-адрес будет исключен из списка
+    addresses:
+      - ${API_ADDR}/request
+
+  acct:
+    enabled: true
+    count_readers: 3
+    addresses:
+      - ${API_ADDR}/acct
+  
+  postauth:
+    enabled: true
+    count_readers: 3
+    addresses:
+      - ${API_ADDR}/post-auth
+
+
