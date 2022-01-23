@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `addr`;
 /*!50001 DROP VIEW IF EXISTS `addr`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `addr` AS SELECT 
- 1 AS `id`,
- 1 AS `city`,
- 1 AS `street`,
- 1 AS `house`,
- 1 AS `full_addr`,
- 1 AS `group_id`,
- 1 AS `group_name`*/;
+/*!50001 CREATE VIEW `addr` AS SELECT
+                                   1 AS `id`,
+                                   1 AS `city`,
+                                   1 AS `street`,
+                                   1 AS `house`,
+                                   1 AS `full_addr`,
+                                   1 AS `group_id`,
+                                   1 AS `group_name`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -41,9 +41,9 @@ DROP TABLE IF EXISTS `addr_cities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `addr_cities` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `name` varchar(150) DEFAULT NULL,
+                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -65,12 +65,12 @@ DROP TABLE IF EXISTS `addr_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `addr_groups` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `description` varchar(255) NOT NULL,
-  `reaction_factor` decimal(8,2) NOT NULL DEFAULT '1.00',
-  PRIMARY KEY (`id`)
+                               `id` int NOT NULL AUTO_INCREMENT,
+                               `name` varchar(50) NOT NULL,
+                               `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                               `description` varchar(255) NOT NULL,
+                               `reaction_factor` decimal(8,2) NOT NULL DEFAULT '1.00',
+                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,20 +92,20 @@ DROP TABLE IF EXISTS `addr_houses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `addr_houses` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `street` int unsigned DEFAULT NULL,
-  `entrances` tinyint DEFAULT NULL,
-  `floors` tinyint DEFAULT NULL,
-  `apartments` int DEFAULT NULL,
-  `descr` varchar(150) DEFAULT NULL,
-  `group_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`,`street`),
-  KEY `house_street` (`street`),
-  KEY `group_id` (`group_id`),
-  CONSTRAINT `addr_houses_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `house_street` FOREIGN KEY (`street`) REFERENCES `addr_streets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `name` varchar(50) DEFAULT NULL,
+                               `street` int unsigned DEFAULT NULL,
+                               `entrances` tinyint DEFAULT NULL,
+                               `floors` tinyint DEFAULT NULL,
+                               `apartments` int DEFAULT NULL,
+                               `descr` varchar(150) DEFAULT NULL,
+                               `group_id` int NOT NULL,
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `name` (`name`,`street`),
+                               KEY `house_street` (`street`),
+                               KEY `group_id` (`group_id`),
+                               CONSTRAINT `addr_houses_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                               CONSTRAINT `house_street` FOREIGN KEY (`street`) REFERENCES `addr_streets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=650 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -127,14 +127,14 @@ DROP TABLE IF EXISTS `addr_streets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `addr_streets` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `city` int unsigned DEFAULT NULL,
-  `show` bit(1) DEFAULT b'1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`,`city`),
-  KEY `street_city` (`city`),
-  CONSTRAINT `street_city` FOREIGN KEY (`city`) REFERENCES `addr_cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                `name` varchar(150) DEFAULT NULL,
+                                `city` int unsigned DEFAULT NULL,
+                                `show` bit(1) DEFAULT b'1',
+                                PRIMARY KEY (`id`),
+                                UNIQUE KEY `name` (`name`,`city`),
+                                KEY `street_city` (`city`),
+                                CONSTRAINT `street_city` FOREIGN KEY (`city`) REFERENCES `addr_cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -144,7 +144,7 @@ CREATE TABLE `addr_streets` (
 
 LOCK TABLES `addr_streets` WRITE;
 /*!40000 ALTER TABLE `addr_streets` DISABLE KEYS */;
-INSERT INTO `addr_streets` VALUES (10,'Европейская улица',4,_binary ''),(11,'Жулянская улица',4,_binary ''),(12,'Кошова',5,_binary ''),(14,'проспект Валерія Лобановського ',7,_binary ''),(15,'Яблунева ',5,_binary ''),(19,'Волошковая',5,_binary ''),(20,'Ленина',5,_binary ''),(21,'Оксамитова',5,_binary ''),(22,'Шалимова',5,_binary ''),(23,'Шевченка',5,_binary ''),(24,'Счастливая',5,_binary ''),(26,'просп. Героев Небесной Сотни',5,_binary ''),(27,'ул. Радужная',5,_binary ''),(28,'Зодчих',7,_binary ''),(29,'Щастя',4,_binary ''),(30,'Берковецька',7,_binary ''),(31,'Бударіна',7,_binary ''),(32,'ул. Петровская (ЖК Барселона)',5,_binary ''),(33,'ул. Небесной Сотни',5,_binary ''),(35,'Леонтовича',7,_binary ''),(76,'Леменівська',5,_binary '');
+INSERT INTO `addr_streets` VALUES (10,'Европейская улица',4,_binary ''),(11,'Жулянская улица',4,_binary ''),(12,'Кошова',5,_binary ''),(14,'проспект Валерія Лобановського ',7,_binary ''),(15,'Яблунева ',5,_binary ''),(19,'Волошковая',5,_binary ''),(20,'Ленина',5,_binary ''),(21,'Оксамитова',5,_binary ''),(22,'Шалимова',5,_binary ''),(23,'Шевченка',5,_binary ''),(24,'Счастливая',5,_binary ''),(26,'просп. Героев Небесной Сотни',5,_binary ''),(27,'ул. Радужная',5,_binary ''),(28,'Зодчих',7,_binary ''),(29,'Щастя',4,_binary ''),(30,'Берковецька',7,_binary ''),(31,'Бударіна',7,_binary ''),(32,'ул. Петровская (ЖК Барселона)',5,_binary ''),(33,'ул. Небесной Сотни',5,_binary ''),(35,'Леонтовича',7,_binary ''),(76,'Леменівська',5,_binary '');
 /*!40000 ALTER TABLE `addr_streets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,21 +156,21 @@ DROP TABLE IF EXISTS `bill_prices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bill_prices` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `price_day` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `price_month` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `recalc_time` enum('day','month') NOT NULL DEFAULT 'day',
-  `show` bit(1) NOT NULL DEFAULT b'1',
-  `speed` int DEFAULT '0',
-  `provider` int unsigned DEFAULT NULL,
-  `purpose_of_payment` varchar(255) DEFAULT NULL,
-  `days_to_disable` int NOT NULL DEFAULT '0',
-  `sms_name` varchar(255) DEFAULT NULL,
-  `work_type` enum('inet','question','trinity','iptv','no_action') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_price_provider` (`provider`),
-  CONSTRAINT `fk_price_provider` FOREIGN KEY (`provider`) REFERENCES `providers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `name` varchar(50) DEFAULT NULL,
+                               `price_day` decimal(10,2) NOT NULL DEFAULT '0.00',
+                               `price_month` decimal(10,2) NOT NULL DEFAULT '0.00',
+                               `recalc_time` enum('day','month') NOT NULL DEFAULT 'day',
+                               `show` bit(1) NOT NULL DEFAULT b'1',
+                               `speed` int DEFAULT '0',
+                               `provider` int unsigned DEFAULT NULL,
+                               `purpose_of_payment` varchar(255) DEFAULT NULL,
+                               `days_to_disable` int NOT NULL DEFAULT '0',
+                               `sms_name` varchar(255) DEFAULT NULL,
+                               `work_type` enum('inet','question','trinity','iptv','no_action') NOT NULL,
+                               PRIMARY KEY (`id`),
+                               KEY `fk_price_provider` (`provider`),
+                               CONSTRAINT `fk_price_provider` FOREIGN KEY (`provider`) REFERENCES `providers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -180,7 +180,7 @@ CREATE TABLE `bill_prices` (
 
 LOCK TABLES `bill_prices` WRITE;
 /*!40000 ALTER TABLE `bill_prices` DISABLE KEYS */;
-INSERT INTO `bill_prices` VALUES (42,'Швидкiсть 30',4.00,120.00,'day',_binary '',35,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(43,'Швидкiсть 50',4.66,140.00,'day',_binary '',55,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(44,'Швидкiсть 100',6.00,180.00,'day',_binary '',105,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(45,'Швидкість 500',8.33,250.00,'day',_binary '',505,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(46,'Біла Ip Адреса M',1.00,30.00,'month',_binary '',0,1026,'Оплата за телекомунікаційнi послуги',0,NULL,'no_action'),(50,'Инет Бесплатный',0.00,0.00,'day',_binary '',0,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(98,'Швидкість 30 М',4.00,120.00,'month',_binary '',30,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(99,'Швидкість 50 М ',4.66,140.00,'month',_binary '',50,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(100,'Швидкість 100 М ',6.00,180.00,'month',_binary '',100,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(101,'Швидкість 500 М ',8.33,250.00,'month',_binary '',500,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet');
+INSERT INTO `bill_prices` VALUES (42,'Швидкiсть 30',4.00,120.00,'day',_binary '',35,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(43,'Швидкiсть 50',4.66,140.00,'day',_binary '',55,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(44,'Швидкiсть 100',6.00,180.00,'day',_binary '',105,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(45,'Швидкість 500',8.33,250.00,'day',_binary '',505,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(46,'Біла Ip Адреса M',1.00,30.00,'month',_binary '',0,1026,'Оплата за телекомунікаційнi послуги',0,NULL,'no_action'),(50,'Инет Бесплатный',0.00,0.00,'day',_binary '',0,1026,'Оплата за телекомунікаційнi послуги',0,'iнтернет','inet'),(98,'Швидкість 30 М',4.00,120.00,'month',_binary '',30,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(99,'Швидкість 50 М ',4.66,140.00,'month',_binary '',50,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(100,'Швидкість 100 М ',6.00,180.00,'month',_binary '',100,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet'),(101,'Швидкість 500 М ',8.33,250.00,'month',_binary '',500,1026,'Оплата за телекомунікаційні послуги',0,'інтернет','inet');
 /*!40000 ALTER TABLE `bill_prices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,15 +192,15 @@ DROP TABLE IF EXISTS `billing_charge_off`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `billing_charge_off` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `agreement` int NOT NULL,
-  `price` decimal(13,3) NOT NULL,
-  `type` text,
-  `balance` decimal(10,2) DEFAULT NULL,
-  `price_ids` json DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                      `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                      `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `agreement` int NOT NULL,
+                                      `price` decimal(13,3) NOT NULL,
+                                      `type` text,
+                                      `balance` decimal(10,2) DEFAULT NULL,
+                                      `price_ids` json DEFAULT NULL,
+                                      PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,14 +220,14 @@ DROP TABLE IF EXISTS `client_auth_by_phone`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_auth_by_phone` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `phone` varchar(60) NOT NULL,
-  `code` varchar(4) NOT NULL,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `expired_at` datetime NOT NULL,
-  `code_confirmed` tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                        `id` int NOT NULL AUTO_INCREMENT,
+                                        `phone` varchar(60) NOT NULL,
+                                        `code` varchar(4) NOT NULL,
+                                        `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                        `expired_at` datetime NOT NULL,
+                                        `code_confirmed` tinyint NOT NULL DEFAULT '0',
+                                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,10 +247,10 @@ DROP TABLE IF EXISTS `client_balances_v`;
 /*!50001 DROP VIEW IF EXISTS `client_balances_v`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `client_balances_v` AS SELECT 
- 1 AS `id`,
- 1 AS `agreement`,
- 1 AS `balance`*/;
+/*!50001 CREATE VIEW `client_balances_v` AS SELECT
+                                                1 AS `id`,
+                                                1 AS `agreement`,
+                                                1 AS `balance`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -261,19 +261,19 @@ DROP TABLE IF EXISTS `client_contacts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_contacts` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `agreement_id` int unsigned NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `type` enum('PHONE','EMAIL','TELEGRAM','VIBER') NOT NULL,
-  `value` varchar(200) NOT NULL,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `employee_id` int NOT NULL,
-  `main` tinyint NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `uniq_agree_typ_val` (`agreement_id`,`type`,`value`) USING BTREE,
-  CONSTRAINT `client_contacts_ibfk_1` FOREIGN KEY (`agreement_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+                                   `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                   `agreement_id` int unsigned NOT NULL,
+                                   `name` varchar(255) DEFAULT NULL,
+                                   `type` enum('PHONE','EMAIL','TELEGRAM','VIBER') NOT NULL,
+                                   `value` varchar(200) NOT NULL,
+                                   `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                   `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                   `employee_id` int NOT NULL,
+                                   `main` tinyint NOT NULL,
+                                   PRIMARY KEY (`id`) USING BTREE,
+                                   UNIQUE KEY `uniq_agree_typ_val` (`agreement_id`,`type`,`value`) USING BTREE,
+                                   CONSTRAINT `client_contacts_ibfk_1` FOREIGN KEY (`agreement_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,6 +282,7 @@ CREATE TABLE `client_contacts` (
 
 LOCK TABLES `client_contacts` WRITE;
 /*!40000 ALTER TABLE `client_contacts` DISABLE KEYS */;
+INSERT INTO `client_contacts` VALUES (1,1,'Основной','PHONE','+380634190768','2022-01-23 14:15:25','2022-01-23 14:15:25',4,0),(2,1,'Основной','EMAIL','max.boyar.a@gmail.com','2022-01-23 14:15:25','2022-01-23 14:15:25',4,1),(3,1,'Тест','PHONE','+380994339579','2022-01-23 14:15:25','2022-01-23 14:15:25',4,1);
 /*!40000 ALTER TABLE `client_contacts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,21 +294,21 @@ DROP TABLE IF EXISTS `client_credit`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_credit` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_employee` int unsigned NOT NULL,
-  `client_id` int unsigned NOT NULL,
-  `amount` decimal(13,2) NOT NULL,
-  `days` int NOT NULL,
-  `status` enum('OPEN','CANCEL','CLOSED','DIACTIVATED') NOT NULL,
-  `closed_date` timestamp NULL DEFAULT NULL,
-  `closed_employee` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `client_id` (`client_id`),
-  KEY `closed_emplo_f2k22` (`closed_employee`) USING BTREE,
-  KEY `status` (`status`),
-  CONSTRAINT `client_credit_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                 `created_employee` int unsigned NOT NULL,
+                                 `client_id` int unsigned NOT NULL,
+                                 `amount` decimal(13,2) NOT NULL,
+                                 `days` int NOT NULL,
+                                 `status` enum('OPEN','CANCEL','CLOSED','DIACTIVATED') NOT NULL,
+                                 `closed_date` timestamp NULL DEFAULT NULL,
+                                 `closed_employee` int unsigned DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `client_id` (`client_id`),
+                                 KEY `closed_emplo_f2k22` (`closed_employee`) USING BTREE,
+                                 KEY `status` (`status`),
+                                 CONSTRAINT `client_credit_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,6 +317,7 @@ CREATE TABLE `client_credit` (
 
 LOCK TABLES `client_credit` WRITE;
 /*!40000 ALTER TABLE `client_credit` DISABLE KEYS */;
+INSERT INTO `client_credit` VALUES (1,'2022-01-23 14:13:30',4,1,24.00,4,'CLOSED','2022-01-23 14:15:55',20);
 /*!40000 ALTER TABLE `client_credit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,15 +329,15 @@ DROP TABLE IF EXISTS `client_disable_days`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_disable_days` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_employee` int unsigned NOT NULL,
-  `client` int unsigned NOT NULL,
-  `days` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `client_id` (`client`),
-  CONSTRAINT `client_disable_days_ibfk_1` FOREIGN KEY (`client`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+                                       `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                       `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                       `created_employee` int unsigned NOT NULL,
+                                       `client` int unsigned NOT NULL,
+                                       `days` int NOT NULL,
+                                       PRIMARY KEY (`id`),
+                                       KEY `client_id` (`client`),
+                                       CONSTRAINT `client_disable_days_ibfk_1` FOREIGN KEY (`client`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,6 +346,7 @@ CREATE TABLE `client_disable_days` (
 
 LOCK TABLES `client_disable_days` WRITE;
 /*!40000 ALTER TABLE `client_disable_days` DISABLE KEYS */;
+INSERT INTO `client_disable_days` VALUES (1,'2022-01-23 14:14:34',4,1,0);
 /*!40000 ALTER TABLE `client_disable_days` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,12 +358,12 @@ DROP TABLE IF EXISTS `client_disable_days_last`;
 /*!50001 DROP VIEW IF EXISTS `client_disable_days_last`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `client_disable_days_last` AS SELECT 
- 1 AS `id`,
- 1 AS `created`,
- 1 AS `created_employee`,
- 1 AS `client`,
- 1 AS `days`*/;
+/*!50001 CREATE VIEW `client_disable_days_last` AS SELECT
+                                                       1 AS `id`,
+                                                       1 AS `created`,
+                                                       1 AS `created_employee`,
+                                                       1 AS `client`,
+                                                       1 AS `days`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -371,15 +374,15 @@ DROP TABLE IF EXISTS `client_password_reminder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_password_reminder` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `phone` varchar(60) NOT NULL,
-  `code` varchar(4) NOT NULL,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `expired_at` datetime NOT NULL,
-  `code_confirmed` tinyint NOT NULL DEFAULT '0',
-  `uuid` varchar(60) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                            `id` int NOT NULL AUTO_INCREMENT,
+                                            `phone` varchar(60) NOT NULL,
+                                            `code` varchar(4) NOT NULL,
+                                            `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                            `expired_at` datetime NOT NULL,
+                                            `code_confirmed` tinyint NOT NULL DEFAULT '0',
+                                            `uuid` varchar(60) NOT NULL,
+                                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,24 +402,24 @@ DROP TABLE IF EXISTS `client_prices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_prices` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `agreement` int unsigned NOT NULL,
-  `price` int unsigned NOT NULL,
-  `time_start` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `time_stop` timestamp NULL DEFAULT NULL,
-  `act_employee_id` int DEFAULT NULL,
-  `deact_employee_id` int DEFAULT NULL,
-  `parent` int unsigned DEFAULT NULL,
-  `disable_day` datetime DEFAULT NULL,
-  `disable_day_static` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `agreement_price` (`agreement`,`price`) USING BTREE,
-  KEY `price` (`price`),
-  KEY `parent` (`parent`),
-  CONSTRAINT `client` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`),
-  CONSTRAINT `client_prices_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `client_prices` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  CONSTRAINT `price` FOREIGN KEY (`price`) REFERENCES `bill_prices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `agreement` int unsigned NOT NULL,
+                                 `price` int unsigned NOT NULL,
+                                 `time_start` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                 `time_stop` timestamp NULL DEFAULT NULL,
+                                 `act_employee_id` int DEFAULT NULL,
+                                 `deact_employee_id` int DEFAULT NULL,
+                                 `parent` int unsigned DEFAULT NULL,
+                                 `disable_day` datetime DEFAULT NULL,
+                                 `disable_day_static` datetime DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `agreement_price` (`agreement`,`price`) USING BTREE,
+                                 KEY `price` (`price`),
+                                 KEY `parent` (`parent`),
+                                 CONSTRAINT `client` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`),
+                                 CONSTRAINT `client_prices_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `client_prices` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+                                 CONSTRAINT `price` FOREIGN KEY (`price`) REFERENCES `bill_prices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -425,6 +428,7 @@ CREATE TABLE `client_prices` (
 
 LOCK TABLES `client_prices` WRITE;
 /*!40000 ALTER TABLE `client_prices` DISABLE KEYS */;
+INSERT INTO `client_prices` VALUES (1,1,44,'2022-01-23 14:10:49','2022-01-23 14:15:35',4,4,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `client_prices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,14 +440,14 @@ DROP TABLE IF EXISTS `client_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_tokens` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL,
-  `client_id` int unsigned NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expired_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `employee` (`client_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `token` varchar(255) NOT NULL,
+                                 `client_id` int unsigned NOT NULL,
+                                 `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                 `expired_at` datetime DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `employee` (`client_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -463,16 +467,16 @@ DROP TABLE IF EXISTS `client_trinity_agreements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_trinity_agreements` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `trinity_agreement` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `agreement` int NOT NULL,
-  `price_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `addresses` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `created_time` datetime DEFAULT NULL,
-  `updated_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `agreement` (`agreement`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+                                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                             `trinity_agreement` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                                             `agreement` int NOT NULL,
+                                             `price_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                                             `addresses` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                                             `created_time` datetime DEFAULT NULL,
+                                             `updated_time` datetime DEFAULT NULL,
+                                             PRIMARY KEY (`id`),
+                                             UNIQUE KEY `agreement` (`agreement`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -492,32 +496,32 @@ DROP TABLE IF EXISTS `clients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `agreement` bigint NOT NULL,
-  `name` varchar(150) NOT NULL DEFAULT '',
-  `entrance` tinyint unsigned NOT NULL DEFAULT '1',
-  `floor` tinyint unsigned NOT NULL DEFAULT '1',
-  `apartment` varchar(150) NOT NULL DEFAULT '1',
-  `house` int unsigned NOT NULL,
-  `balance` decimal(9,2) NOT NULL DEFAULT '0.00',
-  `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `descr` varchar(4096) NOT NULL DEFAULT '',
-  `notice_mail` tinyint unsigned NOT NULL DEFAULT '1',
-  `notice_sms` tinyint unsigned NOT NULL DEFAULT '1',
-  `enable_credit` tinyint unsigned NOT NULL DEFAULT '1',
-  `password` varchar(100) NOT NULL DEFAULT '',
-  `provider` int unsigned NOT NULL,
-  `enable_credit_period` tinyint unsigned NOT NULL DEFAULT '1',
-  `telegram_chat_id` varchar(20) DEFAULT NULL,
-  `status` enum('ENABLED','DISABLED','DELETED') NOT NULL DEFAULT 'ENABLED',
-  PRIMARY KEY (`id`,`agreement`),
-  UNIQUE KEY `agreement` (`agreement`) USING BTREE,
-  KEY `house` (`house`),
-  KEY `id` (`id`),
-  KEY `provider` (`provider`),
-  CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`provider`) REFERENCES `providers` (`id`),
-  CONSTRAINT `house` FOREIGN KEY (`house`) REFERENCES `addr_houses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                           `id` int unsigned NOT NULL AUTO_INCREMENT,
+                           `agreement` bigint NOT NULL,
+                           `name` varchar(150) NOT NULL DEFAULT '',
+                           `entrance` tinyint unsigned NOT NULL DEFAULT '1',
+                           `floor` tinyint unsigned NOT NULL DEFAULT '1',
+                           `apartment` varchar(150) NOT NULL DEFAULT '1',
+                           `house` int unsigned NOT NULL,
+                           `balance` decimal(9,2) NOT NULL DEFAULT '0.00',
+                           `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                           `descr` varchar(4096) NOT NULL DEFAULT '',
+                           `notice_mail` tinyint unsigned NOT NULL DEFAULT '1',
+                           `notice_sms` tinyint unsigned NOT NULL DEFAULT '1',
+                           `enable_credit` tinyint unsigned NOT NULL DEFAULT '1',
+                           `password` varchar(100) NOT NULL DEFAULT '',
+                           `provider` int unsigned NOT NULL,
+                           `enable_credit_period` tinyint unsigned NOT NULL DEFAULT '1',
+                           `telegram_chat_id` varchar(20) DEFAULT NULL,
+                           `status` enum('ENABLED','DISABLED','DELETED') NOT NULL DEFAULT 'ENABLED',
+                           PRIMARY KEY (`id`,`agreement`),
+                           UNIQUE KEY `agreement` (`agreement`) USING BTREE,
+                           KEY `house` (`house`),
+                           KEY `id` (`id`),
+                           KEY `provider` (`provider`),
+                           CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`provider`) REFERENCES `providers` (`id`),
+                           CONSTRAINT `house` FOREIGN KEY (`house`) REFERENCES `addr_houses` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -526,6 +530,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+INSERT INTO `clients` VALUES (1,1000,'Test user',1,1,'11',107,100.00,'2022-01-23 14:05:17','Test',1,1,1,'1000',1026,1,NULL,'ENABLED');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,15 +542,15 @@ DROP TABLE IF EXISTS `device_models`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device_models` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `key` varchar(150) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `params` json DEFAULT NULL,
-  `vendor` varchar(50) DEFAULT NULL,
-  `model` varchar(50) DEFAULT NULL,
-  `type` enum('SWITCH','OLT','ONU','ROUTER') NOT NULL DEFAULT 'SWITCH',
-  `icon` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                 `id` int NOT NULL AUTO_INCREMENT,
+                                 `key` varchar(150) NOT NULL,
+                                 `name` varchar(100) DEFAULT NULL,
+                                 `params` json DEFAULT NULL,
+                                 `vendor` varchar(50) DEFAULT NULL,
+                                 `model` varchar(50) DEFAULT NULL,
+                                 `type` enum('SWITCH','OLT','ONU','ROUTER') NOT NULL DEFAULT 'SWITCH',
+                                 `icon` varchar(255) DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -566,13 +571,13 @@ DROP TABLE IF EXISTS `emplo_positions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `emplo_positions` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `position` varchar(50) NOT NULL DEFAULT '',
-  `rank` tinyint NOT NULL,
-  `show` bit(1) DEFAULT b'1',
-  `permissions` json DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`position`) USING BTREE
+                                   `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                   `position` varchar(50) NOT NULL DEFAULT '',
+                                   `rank` tinyint NOT NULL,
+                                   `show` bit(1) DEFAULT b'1',
+                                   `permissions` json DEFAULT NULL,
+                                   PRIMARY KEY (`id`),
+                                   UNIQUE KEY `name` (`position`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -582,7 +587,7 @@ CREATE TABLE `emplo_positions` (
 
 LOCK TABLES `emplo_positions` WRITE;
 /*!40000 ALTER TABLE `emplo_positions` DISABLE KEYS */;
-INSERT INTO `emplo_positions` VALUES (4,'Администратор',30,_binary '','[\"customer_create\", \"customer_mass_messages\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_disable_agreement\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\", \"payment_source\", \"payment_summary_source\", \"payment_summary_price\", \"payment_liqpay\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_models\", \"eq_access\", \"eq_group\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"eq_edit\", \"eq_create\", \"eq_delete\", \"eq_change_vlan\", \"vlan_show\", \"vlan_change\", \"network_show\", \"network_edit\", \"employees_show\", \"employees_group\", \"employees_add\", \"employees_notification\", \"employees_reaction_stat\", \"employees_schedule_show\", \"employees_schedule_edit\", \"question_loading\", \"sys_question_reason\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\", \"trinity_delete\", \"omo_display\", \"omo_control\"]'),(9,'Оператор',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"employees_show\", \"trinity_binding_add\", \"trinity_search\", \"trinity_delete\"]'),(19,'Монтажник',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_create\", \"employees_show\", \"trinity_binding_add\", \"trinity_search\", \"trinity_delete\"]'),(21,'Инженер',30,_binary '','[\"customer_create\", \"customer_search\", \"customer_show_card\", \"customer_change_provider\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_ack\", \"customer_change_contacts\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_models\", \"eq_access\", \"eq_group\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"eq_edit\", \"eq_create\", \"eq_delete\", \"eq_change_vlan\", \"vlan_show\", \"vlan_change\", \"network_show\", \"network_edit\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\", \"trinity_delete\"]'),(22,'Система',30,_binary '','[]'),(23,'Бугалтер',30,_binary '','[\"customer_create\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_change_description\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\"]'),(24,'Офіс Менеджер',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_disable_agreement\", \"customer_change_contacts\", \"customer_change_password\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"employees_reaction_stat\", \"employees_schedule_show\", \"employees_schedule_edit\", \"question_loading\"]'),(25,'Монтажник ЮГ',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"employees_show\", \"employees_schedule_show\", \"question_loading\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\"]');
+INSERT INTO `emplo_positions` VALUES (4,'Администратор',30,_binary '','[\"customer_create\", \"customer_mass_messages\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_disable_agreement\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\", \"payment_source\", \"payment_summary_source\", \"payment_summary_price\", \"payment_liqpay\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_models\", \"eq_access\", \"eq_group\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"eq_edit\", \"eq_create\", \"eq_delete\", \"eq_change_vlan\", \"vlan_show\", \"vlan_change\", \"network_show\", \"network_edit\", \"employees_show\", \"employees_group\", \"employees_add\", \"employees_notification\", \"employees_reaction_stat\", \"employees_schedule_show\", \"employees_schedule_edit\", \"question_loading\", \"sys_question_reason\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\", \"trinity_delete\", \"omo_display\", \"omo_control\"]'),(9,'Оператор',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"employees_show\", \"trinity_binding_add\", \"trinity_search\", \"trinity_delete\"]'),(19,'Монтажник',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_create\", \"employees_show\", \"trinity_binding_add\", \"trinity_search\", \"trinity_delete\"]'),(21,'Инженер',30,_binary '','[\"customer_create\", \"customer_search\", \"customer_show_card\", \"customer_change_provider\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_ack\", \"customer_change_contacts\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_models\", \"eq_access\", \"eq_group\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"eq_edit\", \"eq_create\", \"eq_delete\", \"eq_change_vlan\", \"vlan_show\", \"vlan_change\", \"network_show\", \"network_edit\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\", \"trinity_delete\"]'),(22,'Система',30,_binary '','[]'),(23,'Бугалтер',30,_binary '','[\"customer_create\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_change_description\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\"]'),(24,'Офіс Менеджер',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_disable_agreement\", \"customer_change_contacts\", \"customer_change_password\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"employees_reaction_stat\", \"employees_schedule_show\", \"employees_schedule_edit\", \"question_loading\"]'),(25,'Монтажник ЮГ',30,_binary '','[\"customer_create\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_show\", \"payment_create\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"employees_show\", \"employees_schedule_show\", \"question_loading\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\"]');
 /*!40000 ALTER TABLE `emplo_positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -594,15 +599,15 @@ DROP TABLE IF EXISTS `emplo_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `emplo_tokens` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL,
-  `employee` int unsigned NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expired_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `employee` (`employee`) USING BTREE,
-  CONSTRAINT `emplo_tokens_ibfk_1` FOREIGN KEY (`employee`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+                                `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                `token` varchar(255) NOT NULL,
+                                `employee` int unsigned NOT NULL,
+                                `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                `expired_at` datetime DEFAULT NULL,
+                                PRIMARY KEY (`id`),
+                                KEY `employee` (`employee`) USING BTREE,
+                                CONSTRAINT `emplo_tokens_ibfk_1` FOREIGN KEY (`employee`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,6 +616,7 @@ CREATE TABLE `emplo_tokens` (
 
 LOCK TABLES `emplo_tokens` WRITE;
 /*!40000 ALTER TABLE `emplo_tokens` DISABLE KEYS */;
+INSERT INTO `emplo_tokens` VALUES (1,'38ade8d2-b8ed-4992-adda-2c3a3e58e070',4,'2022-01-23 13:59:06','2022-02-06 13:59:06');
 /*!40000 ALTER TABLE `emplo_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -622,16 +628,16 @@ DROP TABLE IF EXISTS `employee_positions_to_house_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_positions_to_house_groups` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `position_id` int unsigned NOT NULL,
-  `house_group_id` int NOT NULL,
-  `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `position_id` (`position_id`),
-  KEY `house_group_id` (`house_group_id`),
-  CONSTRAINT `employee_positions_to_house_groups_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `emplo_positions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `employee_positions_to_house_groups_ibfk_2` FOREIGN KEY (`house_group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                                      `id` int NOT NULL AUTO_INCREMENT,
+                                                      `position_id` int unsigned NOT NULL,
+                                                      `house_group_id` int NOT NULL,
+                                                      `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                                      PRIMARY KEY (`id`),
+                                                      KEY `position_id` (`position_id`),
+                                                      KEY `house_group_id` (`house_group_id`),
+                                                      CONSTRAINT `employee_positions_to_house_groups_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `emplo_positions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                                      CONSTRAINT `employee_positions_to_house_groups_ibfk_2` FOREIGN KEY (`house_group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -640,6 +646,7 @@ CREATE TABLE `employee_positions_to_house_groups` (
 
 LOCK TABLES `employee_positions_to_house_groups` WRITE;
 /*!40000 ALTER TABLE `employee_positions_to_house_groups` DISABLE KEYS */;
+INSERT INTO `employee_positions_to_house_groups` VALUES (1,4,-1,'2022-01-23 14:02:53');
 /*!40000 ALTER TABLE `employee_positions_to_house_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,15 +658,15 @@ DROP TABLE IF EXISTS `employee_work_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_work_statuses` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `employee_id` int unsigned NOT NULL,
-  `start` datetime NOT NULL,
-  `stop` datetime DEFAULT NULL,
-  `status` enum('DUTY','IN_WORK') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `employee_id` (`employee_id`),
-  CONSTRAINT `employee_work_statuses_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                          `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                          `employee_id` int unsigned NOT NULL,
+                                          `start` datetime NOT NULL,
+                                          `stop` datetime DEFAULT NULL,
+                                          `status` enum('DUTY','IN_WORK') NOT NULL,
+                                          PRIMARY KEY (`id`),
+                                          KEY `employee_id` (`employee_id`),
+                                          CONSTRAINT `employee_work_statuses_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -679,19 +686,19 @@ DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employees` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `phone` varchar(32) DEFAULT NULL,
-  `skype` varchar(32) DEFAULT NULL,
-  `mail` varchar(32) DEFAULT NULL,
-  `position` int unsigned DEFAULT NULL,
-  `password` varchar(50) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `display` int DEFAULT '1',
-  `telegram_id` text,
-  PRIMARY KEY (`id`),
-  KEY `positions` (`position`),
-  CONSTRAINT `positions` FOREIGN KEY (`position`) REFERENCES `emplo_positions` (`id`)
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `name` varchar(150) DEFAULT NULL,
+                             `phone` varchar(32) DEFAULT NULL,
+                             `skype` varchar(32) DEFAULT NULL,
+                             `mail` varchar(32) DEFAULT NULL,
+                             `position` int unsigned DEFAULT NULL,
+                             `password` varchar(50) NOT NULL,
+                             `login` varchar(50) NOT NULL,
+                             `display` int DEFAULT '1',
+                             `telegram_id` text,
+                             PRIMARY KEY (`id`),
+                             KEY `positions` (`position`),
+                             CONSTRAINT `positions` FOREIGN KEY (`position`) REFERENCES `emplo_positions` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -713,23 +720,23 @@ DROP TABLE IF EXISTS `eq_bindings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_bindings` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `switch` int unsigned DEFAULT NULL,
-  `activation` int unsigned DEFAULT NULL,
-  `port` varchar(15) DEFAULT NULL,
-  `mac` varchar(22) DEFAULT NULL,
-  `ip` varchar(15) DEFAULT NULL,
-  `employee` int unsigned DEFAULT NULL,
-  `allow_static` tinyint NOT NULL DEFAULT '0',
-  `port_ident` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ip` (`ip`),
-  KEY `switch` (`switch`),
-  KEY `activation` (`activation`),
-  CONSTRAINT `eq_bindings_ibfk_1` FOREIGN KEY (`switch`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `eq_bindings_ibfk_2` FOREIGN KEY (`activation`) REFERENCES `client_prices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                               `switch` int unsigned DEFAULT NULL,
+                               `activation` int unsigned DEFAULT NULL,
+                               `port` varchar(15) DEFAULT NULL,
+                               `mac` varchar(22) DEFAULT NULL,
+                               `ip` varchar(15) DEFAULT NULL,
+                               `employee` int unsigned DEFAULT NULL,
+                               `allow_static` tinyint NOT NULL DEFAULT '0',
+                               `port_ident` int DEFAULT NULL,
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `ip` (`ip`),
+                               KEY `switch` (`switch`),
+                               KEY `activation` (`activation`),
+                               CONSTRAINT `eq_bindings_ibfk_1` FOREIGN KEY (`switch`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                               CONSTRAINT `eq_bindings_ibfk_2` FOREIGN KEY (`activation`) REFERENCES `client_prices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -740,6 +747,7 @@ LOCK TABLES `eq_bindings` WRITE;
 /*!40000 ALTER TABLE `eq_bindings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eq_bindings` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `service` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -750,14 +758,16 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `to_history_updated` BEFORE UPDATE ON `eq_bindings` FOR EACH ROW BEGIN
-INSERT INTO eq_bindings_history
-SELECT *, 'UPDATED', NOW() FROM eq_bindings WHERE id = OLD.id;
+    INSERT INTO eq_bindings_history
+    SELECT *, 'UPDATED', NOW() FROM eq_bindings WHERE id = OLD.id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `service` CHARACTER SET utf8mb3 COLLATE utf8_general_ci ;
+ALTER DATABASE `service` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -768,14 +778,15 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `to_history_deleted` BEFORE DELETE ON `eq_bindings` FOR EACH ROW BEGIN
-INSERT INTO eq_bindings_history
-SELECT *, 'DELETED', NOW() FROM eq_bindings WHERE id = OLD.id;
+    INSERT INTO eq_bindings_history
+    SELECT *, 'DELETED', NOW() FROM eq_bindings WHERE id = OLD.id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `service` CHARACTER SET utf8mb3 COLLATE utf8_general_ci ;
 
 --
 -- Table structure for table `eq_bindings_activity`
@@ -785,15 +796,15 @@ DROP TABLE IF EXISTS `eq_bindings_activity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_bindings_activity` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `binding_id` int NOT NULL,
-  `request` json NOT NULL,
-  `response` json NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `binding_id` (`binding_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                        `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                        `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                        `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                        `binding_id` int NOT NULL,
+                                        `request` json NOT NULL,
+                                        `response` json NOT NULL,
+                                        PRIMARY KEY (`id`),
+                                        UNIQUE KEY `binding_id` (`binding_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -813,21 +824,21 @@ DROP TABLE IF EXISTS `eq_bindings_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_bindings_history` (
-  `id` int unsigned DEFAULT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `switch` int unsigned DEFAULT NULL,
-  `activation` int unsigned DEFAULT NULL,
-  `port` varchar(50) DEFAULT NULL,
-  `mac` varchar(22) DEFAULT NULL,
-  `ip` varchar(15) DEFAULT NULL,
-  `employee` int unsigned DEFAULT NULL,
-  `allow_static` tinyint NOT NULL DEFAULT '0',
-  `port_ident` int DEFAULT NULL,
-  `action` enum('DELETED','UPDATED') DEFAULT NULL,
-  `action_time` datetime DEFAULT NULL,
-  KEY `switch` (`switch`),
-  KEY `activation` (`activation`),
-  KEY `ip` (`ip`) USING BTREE
+                                       `id` int unsigned DEFAULT NULL,
+                                       `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                       `switch` int unsigned DEFAULT NULL,
+                                       `activation` int unsigned DEFAULT NULL,
+                                       `port` varchar(50) DEFAULT NULL,
+                                       `mac` varchar(22) DEFAULT NULL,
+                                       `ip` varchar(15) DEFAULT NULL,
+                                       `employee` int unsigned DEFAULT NULL,
+                                       `allow_static` tinyint NOT NULL DEFAULT '0',
+                                       `port_ident` int DEFAULT NULL,
+                                       `action` enum('DELETED','UPDATED') DEFAULT NULL,
+                                       `action_time` datetime DEFAULT NULL,
+                                       KEY `switch` (`switch`),
+                                       KEY `activation` (`activation`),
+                                       KEY `ip` (`ip`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -848,14 +859,14 @@ DROP TABLE IF EXISTS `eq_binds_extra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_binds_extra` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `binding_id` int unsigned NOT NULL,
-  `type` enum('FLAG','VALUE') NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `binding_id` (`binding_id`),
-  CONSTRAINT `eq_binds_extra_ibfk_1` FOREIGN KEY (`binding_id`) REFERENCES `eq_bindings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                  `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                  `binding_id` int unsigned NOT NULL,
+                                  `type` enum('FLAG','VALUE') NOT NULL,
+                                  `name` varchar(255) NOT NULL,
+                                  `value` varchar(255) NOT NULL,
+                                  PRIMARY KEY (`id`),
+                                  KEY `binding_id` (`binding_id`),
+                                  CONSTRAINT `eq_binds_extra_ibfk_1` FOREIGN KEY (`binding_id`) REFERENCES `eq_bindings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -876,15 +887,15 @@ DROP TABLE IF EXISTS `eq_kinds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_kinds` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `rank` int DEFAULT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `parent` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `parent` (`parent`),
-  CONSTRAINT `eq_kinds_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `eq_kinds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                            `id` int unsigned NOT NULL AUTO_INCREMENT,
+                            `name` varchar(255) DEFAULT NULL,
+                            `description` varchar(255) DEFAULT NULL,
+                            `rank` int DEFAULT NULL,
+                            `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                            `parent` int unsigned DEFAULT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `parent` (`parent`),
+                            CONSTRAINT `eq_kinds_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `eq_kinds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -906,18 +917,18 @@ DROP TABLE IF EXISTS `eq_neth`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_neth` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `type` int unsigned DEFAULT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `startIp` varchar(15) DEFAULT NULL,
-  `stopIp` varchar(15) DEFAULT NULL,
-  `mask` varchar(15) DEFAULT NULL,
-  `gateway` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `type` (`type`),
-  CONSTRAINT `eq_neth_ibfk_1` FOREIGN KEY (`type`) REFERENCES `eq_kinds` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                           `id` int unsigned NOT NULL AUTO_INCREMENT,
+                           `name` varchar(255) DEFAULT NULL,
+                           `type` int unsigned DEFAULT NULL,
+                           `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                           `startIp` varchar(15) DEFAULT NULL,
+                           `stopIp` varchar(15) DEFAULT NULL,
+                           `mask` varchar(15) DEFAULT NULL,
+                           `gateway` varchar(15) DEFAULT NULL,
+                           PRIMARY KEY (`id`),
+                           KEY `type` (`type`),
+                           CONSTRAINT `eq_neth_ibfk_1` FOREIGN KEY (`type`) REFERENCES `eq_kinds` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -937,11 +948,11 @@ DROP TABLE IF EXISTS `eq_pinger_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_pinger_log` (
-  `equipment` int unsigned NOT NULL,
-  `down` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `up` timestamp NULL DEFAULT NULL,
-  KEY `equipment` (`equipment`),
-  CONSTRAINT `eq_pinger_log_ibfk_1` FOREIGN KEY (`equipment`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                 `equipment` int unsigned NOT NULL,
+                                 `down` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                 `up` timestamp NULL DEFAULT NULL,
+                                 KEY `equipment` (`equipment`),
+                                 CONSTRAINT `eq_pinger_log_ibfk_1` FOREIGN KEY (`equipment`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -962,14 +973,14 @@ DROP TABLE IF EXISTS `eq_vlan_equipment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_vlan_equipment` (
-  `vlan` int unsigned DEFAULT NULL,
-  `equipment` int unsigned DEFAULT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  UNIQUE KEY `eq_vlan` (`vlan`,`equipment`) USING BTREE,
-  KEY `equipment` (`equipment`),
-  KEY `vlan` (`vlan`),
-  CONSTRAINT `eq_vlan_equipment_ibfk_1` FOREIGN KEY (`vlan`) REFERENCES `eq_vlans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `eq_vlan_equipment_ibfk_2` FOREIGN KEY (`equipment`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                     `vlan` int unsigned DEFAULT NULL,
+                                     `equipment` int unsigned DEFAULT NULL,
+                                     `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                     UNIQUE KEY `eq_vlan` (`vlan`,`equipment`) USING BTREE,
+                                     KEY `equipment` (`equipment`),
+                                     KEY `vlan` (`vlan`),
+                                     CONSTRAINT `eq_vlan_equipment_ibfk_1` FOREIGN KEY (`vlan`) REFERENCES `eq_vlans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                     CONSTRAINT `eq_vlan_equipment_ibfk_2` FOREIGN KEY (`equipment`) REFERENCES `equipment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -990,14 +1001,14 @@ DROP TABLE IF EXISTS `eq_vlan_neth`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_vlan_neth` (
-  `neth` int unsigned DEFAULT NULL,
-  `vlan` int unsigned DEFAULT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  UNIQUE KEY `ntt` (`neth`,`vlan`),
-  KEY `vlan` (`vlan`),
-  KEY `neth` (`neth`),
-  CONSTRAINT `eq_vlan_neth_ibfk_1` FOREIGN KEY (`neth`) REFERENCES `eq_neth` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `eq_vlan_neth_ibfk_2` FOREIGN KEY (`vlan`) REFERENCES `eq_vlans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                `neth` int unsigned DEFAULT NULL,
+                                `vlan` int unsigned DEFAULT NULL,
+                                `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                UNIQUE KEY `ntt` (`neth`,`vlan`),
+                                KEY `vlan` (`vlan`),
+                                KEY `neth` (`neth`),
+                                CONSTRAINT `eq_vlan_neth_ibfk_1` FOREIGN KEY (`neth`) REFERENCES `eq_neth` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                CONSTRAINT `eq_vlan_neth_ibfk_2` FOREIGN KEY (`vlan`) REFERENCES `eq_vlans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1018,15 +1029,15 @@ DROP TABLE IF EXISTS `eq_vlans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `eq_vlans` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `vlan` int DEFAULT NULL,
-  `name` varchar(60) DEFAULT NULL,
-  `type` int unsigned DEFAULT NULL,
-  `work_with_device` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  PRIMARY KEY (`id`),
-  KEY `type` (`type`),
-  CONSTRAINT `eq_vlans_ibfk_1` FOREIGN KEY (`type`) REFERENCES `eq_kinds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                            `id` int unsigned NOT NULL AUTO_INCREMENT,
+                            `vlan` int DEFAULT NULL,
+                            `name` varchar(60) DEFAULT NULL,
+                            `type` int unsigned DEFAULT NULL,
+                            `work_with_device` enum('YES','NO') NOT NULL DEFAULT 'YES',
+                            PRIMARY KEY (`id`),
+                            KEY `type` (`type`),
+                            CONSTRAINT `eq_vlans_ibfk_1` FOREIGN KEY (`type`) REFERENCES `eq_kinds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1046,37 +1057,37 @@ DROP TABLE IF EXISTS `equipment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipment` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(15) NOT NULL DEFAULT '',
-  `model` int unsigned DEFAULT NULL,
-  `mac` varchar(22) NOT NULL,
-  `sn` varchar(150) DEFAULT '',
-  `hardware` varchar(20) DEFAULT '',
-  `firmware` varchar(50) DEFAULT '',
-  `change` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `add_person` int unsigned DEFAULT '0',
-  `house` int unsigned DEFAULT NULL,
-  `access` int unsigned NOT NULL,
-  `entrance` tinyint DEFAULT '0',
-  `floor` tinyint DEFAULT NULL,
-  `description` varchar(160) DEFAULT NULL,
-  `repeats` tinyint NOT NULL DEFAULT '0',
-  `ping` int NOT NULL DEFAULT '0',
-  `last_ping` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uplink_port` int DEFAULT NULL,
-  `group` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_2` (`id`) USING BTREE,
-  UNIQUE KEY `ip` (`ip`) USING BTREE,
-  KEY `id` (`access`),
-  KEY `group` (`group`),
-  KEY `models` (`model`),
-  KEY `house_equipment` (`house`),
-  CONSTRAINT `equipment_addr_houses_id_fk` FOREIGN KEY (`house`) REFERENCES `addr_houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `group` FOREIGN KEY (`group`) REFERENCES `equipment_group` (`id`),
-  CONSTRAINT `id` FOREIGN KEY (`access`) REFERENCES `equipment_access` (`id`),
-  CONSTRAINT `models` FOREIGN KEY (`model`) REFERENCES `equipment_models` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `ip` varchar(15) NOT NULL DEFAULT '',
+                             `model` int unsigned DEFAULT NULL,
+                             `mac` varchar(22) NOT NULL,
+                             `sn` varchar(150) DEFAULT '',
+                             `hardware` varchar(20) DEFAULT '',
+                             `firmware` varchar(50) DEFAULT '',
+                             `change` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                             `add_person` int unsigned DEFAULT '0',
+                             `house` int unsigned DEFAULT NULL,
+                             `access` int unsigned NOT NULL,
+                             `entrance` tinyint DEFAULT '0',
+                             `floor` tinyint DEFAULT NULL,
+                             `description` varchar(160) DEFAULT NULL,
+                             `repeats` tinyint NOT NULL DEFAULT '0',
+                             `ping` int NOT NULL DEFAULT '0',
+                             `last_ping` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                             `uplink_port` int DEFAULT NULL,
+                             `group` int unsigned DEFAULT NULL,
+                             PRIMARY KEY (`id`),
+                             UNIQUE KEY `id_2` (`id`) USING BTREE,
+                             UNIQUE KEY `ip` (`ip`) USING BTREE,
+                             KEY `id` (`access`),
+                             KEY `group` (`group`),
+                             KEY `models` (`model`),
+                             KEY `house_equipment` (`house`),
+                             CONSTRAINT `equipment_addr_houses_id_fk` FOREIGN KEY (`house`) REFERENCES `addr_houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                             CONSTRAINT `group` FOREIGN KEY (`group`) REFERENCES `equipment_group` (`id`),
+                             CONSTRAINT `id` FOREIGN KEY (`access`) REFERENCES `equipment_access` (`id`),
+                             CONSTRAINT `models` FOREIGN KEY (`model`) REFERENCES `equipment_models` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1098,10 +1109,10 @@ ALTER DATABASE `service` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `update_log` AFTER UPDATE ON `equipment` FOR EACH ROW BEGIN
-       IF NEW.ping != OLD.ping THEN
-           INSERT INTO equipment_pinger_log (equipment, status) VALUES (NEW.id, NEW.ping);
-        END IF;
-   END */;;
+    IF NEW.ping != OLD.ping THEN
+        INSERT INTO equipment_pinger_log (equipment, status) VALUES (NEW.id, NEW.ping);
+    END IF;
+END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1117,12 +1128,12 @@ DROP TABLE IF EXISTS `equipment_access`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipment_access` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `community` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`) USING BTREE
+                                    `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                    `login` varchar(50) NOT NULL,
+                                    `password` varchar(50) NOT NULL,
+                                    `community` varchar(50) NOT NULL,
+                                    PRIMARY KEY (`id`),
+                                    UNIQUE KEY `id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1144,11 +1155,11 @@ DROP TABLE IF EXISTS `equipment_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipment_group` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `description` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`) USING BTREE
+                                   `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                   `name` varchar(50) DEFAULT NULL,
+                                   `description` varchar(150) DEFAULT NULL,
+                                   PRIMARY KEY (`id`),
+                                   UNIQUE KEY `id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1170,14 +1181,14 @@ DROP TABLE IF EXISTS `equipment_models`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipment_models` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `configurable` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `device_type` enum('SWITCH','OLT','ROUTER','OTHER','ONU') NOT NULL DEFAULT 'SWITCH',
-  `port_regex` varchar(255) NOT NULL DEFAULT '[0-9]{1,}',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`) USING BTREE
+                                    `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                    `name` varchar(150) DEFAULT NULL,
+                                    `description` varchar(255) DEFAULT NULL,
+                                    `configurable` enum('YES','NO') NOT NULL DEFAULT 'YES',
+                                    `device_type` enum('SWITCH','OLT','ROUTER','OTHER','ONU') NOT NULL DEFAULT 'SWITCH',
+                                    `port_regex` varchar(255) NOT NULL DEFAULT '[0-9]{1,}',
+                                    PRIMARY KEY (`id`),
+                                    UNIQUE KEY `id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1199,9 +1210,9 @@ DROP TABLE IF EXISTS `equipment_pinger_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipment_pinger_log` (
-  `equipment` int unsigned DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                                        `equipment` int unsigned DEFAULT NULL,
+                                        `status` int DEFAULT NULL,
+                                        `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1222,27 +1233,27 @@ DROP TABLE IF EXISTS `liqpay`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `liqpay` (
-  `action` varchar(40) DEFAULT NULL,
-  `payment_id` bigint unsigned DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL,
-  `paytype` varchar(50) DEFAULT NULL,
-  `acq_id` varchar(50) DEFAULT NULL,
-  `order_id` varchar(50) DEFAULT NULL,
-  `liqpay_order_id` varchar(150) DEFAULT NULL,
-  `description` varchar(150) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `currency` varchar(30) DEFAULT NULL,
-  `sender_commission` decimal(10,2) DEFAULT NULL,
-  `receiver_commission` decimal(10,2) DEFAULT NULL,
-  `agent_commission` decimal(10,2) DEFAULT NULL,
-  `amount_debit` decimal(10,2) DEFAULT NULL,
-  `amount_credit` decimal(10,2) DEFAULT NULL,
-  `commission_debit` decimal(10,2) DEFAULT NULL,
-  `commission_credit` decimal(10,2) DEFAULT NULL,
-  `is_3ds` varchar(50) DEFAULT NULL,
-  `customer` varchar(30) DEFAULT NULL,
-  `transaction_id` bigint unsigned DEFAULT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                          `action` varchar(40) DEFAULT NULL,
+                          `payment_id` bigint unsigned DEFAULT NULL,
+                          `status` varchar(50) DEFAULT NULL,
+                          `paytype` varchar(50) DEFAULT NULL,
+                          `acq_id` varchar(50) DEFAULT NULL,
+                          `order_id` varchar(50) DEFAULT NULL,
+                          `liqpay_order_id` varchar(150) DEFAULT NULL,
+                          `description` varchar(150) DEFAULT NULL,
+                          `amount` decimal(10,2) DEFAULT NULL,
+                          `currency` varchar(30) DEFAULT NULL,
+                          `sender_commission` decimal(10,2) DEFAULT NULL,
+                          `receiver_commission` decimal(10,2) DEFAULT NULL,
+                          `agent_commission` decimal(10,2) DEFAULT NULL,
+                          `amount_debit` decimal(10,2) DEFAULT NULL,
+                          `amount_credit` decimal(10,2) DEFAULT NULL,
+                          `commission_debit` decimal(10,2) DEFAULT NULL,
+                          `commission_credit` decimal(10,2) DEFAULT NULL,
+                          `is_3ds` varchar(50) DEFAULT NULL,
+                          `customer` varchar(30) DEFAULT NULL,
+                          `transaction_id` bigint unsigned DEFAULT NULL,
+                          `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1263,15 +1274,15 @@ DROP TABLE IF EXISTS `omo_agreement_bindings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `omo_agreement_bindings` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `agreement_id` int unsigned NOT NULL,
-  `user_id` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `agreement_id_2` (`agreement_id`,`user_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `omo_agreement_bindings_ibfk_1` FOREIGN KEY (`agreement_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `omo_agreement_bindings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `omo_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                          `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                          `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                          `agreement_id` int unsigned NOT NULL,
+                                          `user_id` int unsigned NOT NULL,
+                                          PRIMARY KEY (`id`),
+                                          UNIQUE KEY `agreement_id_2` (`agreement_id`,`user_id`),
+                                          KEY `user_id` (`user_id`),
+                                          CONSTRAINT `omo_agreement_bindings_ibfk_1` FOREIGN KEY (`agreement_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                          CONSTRAINT `omo_agreement_bindings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `omo_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1292,16 +1303,16 @@ DROP TABLE IF EXISTS `omo_device_bindings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `omo_device_bindings` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL,
-  `active` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `device_id` int unsigned NOT NULL,
-  `user_id` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `device_id` (`device_id`,`user_id`),
-  KEY `omo_device_bindings_ibfk_1` (`user_id`),
-  CONSTRAINT `omo_device_bindings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `omo_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `omo_device_bindings_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `omo_devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                       `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                       `created_at` datetime NOT NULL,
+                                       `active` enum('YES','NO') NOT NULL DEFAULT 'YES',
+                                       `device_id` int unsigned NOT NULL,
+                                       `user_id` int unsigned NOT NULL,
+                                       PRIMARY KEY (`id`),
+                                       UNIQUE KEY `device_id` (`device_id`,`user_id`),
+                                       KEY `omo_device_bindings_ibfk_1` (`user_id`),
+                                       CONSTRAINT `omo_device_bindings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `omo_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                       CONSTRAINT `omo_device_bindings_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `omo_devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1322,21 +1333,21 @@ DROP TABLE IF EXISTS `omo_devices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `omo_devices` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hub_uid` varchar(150) NOT NULL,
-  `device_uid` varchar(150) NOT NULL,
-  `user_uid` varchar(150) DEFAULT NULL,
-  `type` varchar(150) NOT NULL,
-  `status` enum('BINDED','ENABLED','DISABLED','NOT_BINDED','DELETED') NOT NULL DEFAULT 'NOT_BINDED',
-  `house` int unsigned DEFAULT NULL,
-  `entrance` int DEFAULT NULL,
-  `floor` int DEFAULT NULL,
-  `apartment` varchar(15) DEFAULT NULL,
-  `comment` text,
-  `delete_reason` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `device_uid` (`device_uid`)
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                               `hub_uid` varchar(150) NOT NULL,
+                               `device_uid` varchar(150) NOT NULL,
+                               `user_uid` varchar(150) DEFAULT NULL,
+                               `type` varchar(150) NOT NULL,
+                               `status` enum('BINDED','ENABLED','DISABLED','NOT_BINDED','DELETED') NOT NULL DEFAULT 'NOT_BINDED',
+                               `house` int unsigned DEFAULT NULL,
+                               `entrance` int DEFAULT NULL,
+                               `floor` int DEFAULT NULL,
+                               `apartment` varchar(15) DEFAULT NULL,
+                               `comment` text,
+                               `delete_reason` varchar(100) DEFAULT NULL,
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `device_uid` (`device_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1358,20 +1369,20 @@ DROP TABLE IF EXISTS `omo_events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `omo_events` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `type` varchar(150) NOT NULL,
-  `correlation_id` varchar(150) DEFAULT NULL,
-  `user_uid` varchar(150) DEFAULT NULL,
-  `hub_uid` varchar(150) DEFAULT NULL,
-  `device_uid` varchar(150) DEFAULT NULL,
-  `device_type` varchar(150) DEFAULT NULL,
-  `receiver_phone` varchar(150) DEFAULT NULL,
-  `shared_from_uid` varchar(150) DEFAULT NULL,
-  `shared_from_phone` varchar(150) DEFAULT NULL,
-  `reason` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                              `id` int unsigned NOT NULL AUTO_INCREMENT,
+                              `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                              `type` varchar(150) NOT NULL,
+                              `correlation_id` varchar(150) DEFAULT NULL,
+                              `user_uid` varchar(150) DEFAULT NULL,
+                              `hub_uid` varchar(150) DEFAULT NULL,
+                              `device_uid` varchar(150) DEFAULT NULL,
+                              `device_type` varchar(150) DEFAULT NULL,
+                              `receiver_phone` varchar(150) DEFAULT NULL,
+                              `shared_from_uid` varchar(150) DEFAULT NULL,
+                              `shared_from_phone` varchar(150) DEFAULT NULL,
+                              `reason` varchar(150) DEFAULT NULL,
+                              PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1391,12 +1402,12 @@ DROP TABLE IF EXISTS `omo_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `omo_users` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uid` varchar(150) DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `agreement_id_2` (`uid`,`phone`) USING BTREE
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                             `uid` varchar(150) DEFAULT NULL,
+                             `phone` varchar(30) DEFAULT NULL,
+                             PRIMARY KEY (`id`),
+                             UNIQUE KEY `agreement_id_2` (`uid`,`phone`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1417,19 +1428,19 @@ DROP TABLE IF EXISTS `paymants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paymants` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `money` decimal(7,2) NOT NULL DEFAULT '0.00',
-  `agreement` int unsigned DEFAULT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment` varchar(2048) DEFAULT NULL,
-  `debug_info` varchar(4096) DEFAULT NULL,
-  `payment_type` varchar(50) DEFAULT NULL,
-  `payment_id` varchar(50) DEFAULT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `agreement` (`agreement`),
-  CONSTRAINT `agreement` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                            `id` int unsigned NOT NULL AUTO_INCREMENT,
+                            `money` decimal(7,2) NOT NULL DEFAULT '0.00',
+                            `agreement` int unsigned DEFAULT NULL,
+                            `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                            `comment` varchar(2048) DEFAULT NULL,
+                            `debug_info` varchar(4096) DEFAULT NULL,
+                            `payment_type` varchar(50) DEFAULT NULL,
+                            `payment_id` varchar(50) DEFAULT NULL,
+                            `balance` decimal(10,2) DEFAULT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `agreement` (`agreement`),
+                            CONSTRAINT `agreement` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1438,6 +1449,7 @@ CREATE TABLE `paymants` (
 
 LOCK TABLES `paymants` WRITE;
 /*!40000 ALTER TABLE `paymants` DISABLE KEYS */;
+INSERT INTO `paymants` VALUES (1,100.00,1,'2022-01-23 14:15:55','','user: 4','Абонплата','',NULL);
 /*!40000 ALTER TABLE `paymants` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1449,12 +1461,12 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `balance` BEFORE INSERT ON `paymants` FOR EACH ROW BEGIN 
-SET @agree = NEW.agreement;
-SET @money = NEW.money;
-UPDATE clients SET balance = balance+@money WHERE id = @agree;
-UPDATE client_credit SET status = 'CLOSED', closed_date = NOW(), closed_employee = 20 WHERE client_id = @agree and (SELECT balance FROM clients WHERE id = @agree LIMIT 1) + @money > 0;
-UPDATE client_credit SET amount = amount - @money WHERE client_id = @agree and (SELECT balance FROM clients WHERE id = @agree LIMIT 1) + @money < 0;
+/*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `balance` BEFORE INSERT ON `paymants` FOR EACH ROW BEGIN
+    SET @agree = NEW.agreement;
+    SET @money = NEW.money;
+    UPDATE clients SET balance = balance+@money WHERE id = @agree;
+    UPDATE client_credit SET status = 'CLOSED', closed_date = NOW(), closed_employee = 20 WHERE client_id = @agree and (SELECT balance FROM clients WHERE id = @agree LIMIT 1) + @money > 0;
+    UPDATE client_credit SET amount = amount - @money WHERE client_id = @agree and (SELECT balance FROM clients WHERE id = @agree LIMIT 1) + @money < 0;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1472,9 +1484,9 @@ ALTER DATABASE `service` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`service`@`localhost`*/ /*!50003 TRIGGER `minus` BEFORE DELETE ON `paymants` FOR EACH ROW BEGIN
-UPDATE clients SET balance = balance - OLD.money WHERE id = OLD.agreement;
-INSERT INTO paymants_deleted
-SELECT * FROM paymants WHERE id =OLD.id;
+    UPDATE clients SET balance = balance - OLD.money WHERE id = OLD.agreement;
+    INSERT INTO paymants_deleted
+    SELECT * FROM paymants WHERE id =OLD.id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1491,17 +1503,17 @@ DROP TABLE IF EXISTS `paymants_deleted`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paymants_deleted` (
-  `id` int unsigned NOT NULL,
-  `money` decimal(7,2) NOT NULL DEFAULT '0.00',
-  `agreement` int unsigned DEFAULT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment` varchar(120) DEFAULT NULL,
-  `debug_info` varchar(300) DEFAULT NULL,
-  `payment_type` varchar(50) DEFAULT NULL,
-  `payment_id` varchar(50) DEFAULT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
-  KEY `agreement` (`agreement`),
-  CONSTRAINT `paymants_deleted_ibfk_1` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                    `id` int unsigned NOT NULL,
+                                    `money` decimal(7,2) NOT NULL DEFAULT '0.00',
+                                    `agreement` int unsigned DEFAULT NULL,
+                                    `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                    `comment` varchar(120) DEFAULT NULL,
+                                    `debug_info` varchar(300) DEFAULT NULL,
+                                    `payment_type` varchar(50) DEFAULT NULL,
+                                    `payment_id` varchar(50) DEFAULT NULL,
+                                    `balance` decimal(10,2) DEFAULT NULL,
+                                    KEY `agreement` (`agreement`),
+                                    CONSTRAINT `paymants_deleted_ibfk_1` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1522,17 +1534,17 @@ DROP TABLE IF EXISTS `paymants_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paymants_orders` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `money` decimal(7,2) NOT NULL DEFAULT '0.00',
-  `agreement` int unsigned DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment` varchar(120) DEFAULT NULL,
-  `order_id` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `order_id` (`order_id`) USING BTREE,
-  KEY `agreement` (`agreement`),
-  CONSTRAINT `paymants_orders_ibfk_1` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                   `money` decimal(7,2) NOT NULL DEFAULT '0.00',
+                                   `agreement` int unsigned DEFAULT NULL,
+                                   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                   `comment` varchar(120) DEFAULT NULL,
+                                   `order_id` varchar(120) DEFAULT NULL,
+                                   PRIMARY KEY (`id`),
+                                   UNIQUE KEY `order_id` (`order_id`) USING BTREE,
+                                   KEY `agreement` (`agreement`),
+                                   CONSTRAINT `paymants_orders_ibfk_1` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1552,12 +1564,12 @@ DROP TABLE IF EXISTS `providers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `providers` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `descr` varchar(255) DEFAULT NULL,
-  `changed` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `name` varchar(255) DEFAULT NULL,
+                             `descr` varchar(255) DEFAULT NULL,
+                             `changed` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                             `created` datetime DEFAULT NULL,
+                             PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1028 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1579,19 +1591,19 @@ DROP TABLE IF EXISTS `question_comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question_comments` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `question` int unsigned NOT NULL,
-  `dest_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `comment` text NOT NULL,
-  `employee` int unsigned NOT NULL,
-  `responsible_employee` int NOT NULL DEFAULT '0',
-  `entrance` varchar(20) DEFAULT NULL,
-  `floor` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `question` (`question`),
-  CONSTRAINT `question_comments_ibfk_1` FOREIGN KEY (`question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                     `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                     `question` int unsigned NOT NULL,
+                                     `dest_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                     `comment` text NOT NULL,
+                                     `employee` int unsigned NOT NULL,
+                                     `responsible_employee` int NOT NULL DEFAULT '0',
+                                     `entrance` varchar(20) DEFAULT NULL,
+                                     `floor` varchar(20) DEFAULT NULL,
+                                     PRIMARY KEY (`id`),
+                                     KEY `question` (`question`),
+                                     CONSTRAINT `question_comments_ibfk_1` FOREIGN KEY (`question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1600,6 +1612,7 @@ CREATE TABLE `question_comments` (
 
 LOCK TABLES `question_comments` WRITE;
 /*!40000 ALTER TABLE `question_comments` DISABLE KEYS */;
+INSERT INTO `question_comments` VALUES (1,'2022-01-23 14:23:05',1,'2022-01-23 14:23:05','Test',1,0,NULL,NULL);
 /*!40000 ALTER TABLE `question_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1611,14 +1624,14 @@ DROP TABLE IF EXISTS `question_reason`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question_reason` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `display` enum('NO','YES') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'YES',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `send_telegram` int DEFAULT NULL,
-  `pay_required` tinyint NOT NULL DEFAULT '0',
-  `reaction_time` int unsigned DEFAULT '0',
-  PRIMARY KEY (`id`)
+                                   `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                                   `display` enum('NO','YES') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'YES',
+                                   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                   `send_telegram` int DEFAULT NULL,
+                                   `pay_required` tinyint NOT NULL DEFAULT '0',
+                                   `reaction_time` int unsigned DEFAULT '0',
+                                   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1640,19 +1653,19 @@ DROP TABLE IF EXISTS `question_responses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question_responses` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `question` int unsigned NOT NULL,
-  `comment` text NOT NULL,
-  `status` enum('CLOSED','OPEN','CANCEL','DONE','IN_PROCESS') DEFAULT NULL,
-  `employee` int unsigned NOT NULL,
-  `amount` decimal(13,2) unsigned DEFAULT NULL,
-  `cert_of_completion` text,
-  `cert_subscribed` tinyint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `question` (`question`),
-  CONSTRAINT `question_responses_ibfk_1` FOREIGN KEY (`question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                      `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                      `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                      `question` int unsigned NOT NULL,
+                                      `comment` text NOT NULL,
+                                      `status` enum('CLOSED','OPEN','CANCEL','DONE','IN_PROCESS') DEFAULT NULL,
+                                      `employee` int unsigned NOT NULL,
+                                      `amount` decimal(13,2) unsigned DEFAULT NULL,
+                                      `cert_of_completion` text,
+                                      `cert_subscribed` tinyint DEFAULT NULL,
+                                      PRIMARY KEY (`id`),
+                                      KEY `question` (`question`),
+                                      CONSTRAINT `question_responses_ibfk_1` FOREIGN KEY (`question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1672,14 +1685,14 @@ DROP TABLE IF EXISTS `question_responses_pictures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question_responses_pictures` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `response_id` int unsigned NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `response_id` (`response_id`),
-  CONSTRAINT `question_responses_pictures_ibfk_1` FOREIGN KEY (`response_id`) REFERENCES `question_responses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+                                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                               `response_id` int unsigned NOT NULL,
+                                               `name` varchar(255) NOT NULL,
+                                               PRIMARY KEY (`id`),
+                                               KEY `response_id` (`response_id`),
+                                               CONSTRAINT `question_responses_pictures_ibfk_1` FOREIGN KEY (`response_id`) REFERENCES `question_responses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1699,19 +1712,19 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `questions` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `agreement` int unsigned NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `phone` varchar(22) NOT NULL,
-  `reason` int unsigned NOT NULL,
-  `entrance` varchar(20) DEFAULT NULL,
-  `floor` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `agree` (`agreement`),
-  KEY `reason` (`reason`),
-  CONSTRAINT `agree` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `reason` FOREIGN KEY (`reason`) REFERENCES `question_reason` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `agreement` int unsigned NOT NULL,
+                             `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                             `phone` varchar(22) NOT NULL,
+                             `reason` int unsigned NOT NULL,
+                             `entrance` varchar(20) DEFAULT NULL,
+                             `floor` varchar(20) DEFAULT NULL,
+                             PRIMARY KEY (`id`),
+                             KEY `agree` (`agreement`),
+                             KEY `reason` (`reason`),
+                             CONSTRAINT `agree` FOREIGN KEY (`agreement`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                             CONSTRAINT `reason` FOREIGN KEY (`reason`) REFERENCES `question_reason` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1720,6 +1733,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+INSERT INTO `questions` VALUES (1,1,'2022-01-23 14:23:05','+380994339579',9,NULL,NULL);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1731,25 +1745,25 @@ DROP TABLE IF EXISTS `questions_full`;
 /*!50001 DROP VIEW IF EXISTS `questions_full`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `questions_full` AS SELECT 
- 1 AS `id`,
- 1 AS `agreement`,
- 1 AS `created`,
- 1 AS `phone`,
- 1 AS `reason_id`,
- 1 AS `reason`,
- 1 AS `comment`,
- 1 AS `dest_time`,
- 1 AS `created_employee`,
- 1 AS `reported_employee`,
- 1 AS `report_status`,
- 1 AS `report_time`,
- 1 AS `report_id`,
- 1 AS `report_comment`,
- 1 AS `responsible_employee`,
- 1 AS `amount`,
- 1 AS `cert_of_completion`,
- 1 AS `cert_subscribed`*/;
+/*!50001 CREATE VIEW `questions_full` AS SELECT
+                                             1 AS `id`,
+                                             1 AS `agreement`,
+                                             1 AS `created`,
+                                             1 AS `phone`,
+                                             1 AS `reason_id`,
+                                             1 AS `reason`,
+                                             1 AS `comment`,
+                                             1 AS `dest_time`,
+                                             1 AS `created_employee`,
+                                             1 AS `reported_employee`,
+                                             1 AS `report_status`,
+                                             1 AS `report_time`,
+                                             1 AS `report_id`,
+                                             1 AS `report_comment`,
+                                             1 AS `responsible_employee`,
+                                             1 AS `amount`,
+                                             1 AS `cert_of_completion`,
+                                             1 AS `cert_subscribed`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1760,20 +1774,20 @@ DROP TABLE IF EXISTS `radius_acct`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `radius_acct` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `mac` varchar(40) NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  `dhcp_server` varchar(100) NOT NULL,
-  `vlan_id` int DEFAULT NULL,
-  `start` datetime NOT NULL,
-  `stop` datetime DEFAULT NULL,
-  `switch` varchar(15) DEFAULT NULL,
-  `port` int DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `hostname` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mac` (`mac`,`ip`,`dhcp_server`) USING BTREE
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                               `mac` varchar(40) NOT NULL,
+                               `ip` varchar(15) NOT NULL,
+                               `dhcp_server` varchar(100) NOT NULL,
+                               `vlan_id` int DEFAULT NULL,
+                               `start` datetime NOT NULL,
+                               `stop` datetime DEFAULT NULL,
+                               `switch` varchar(15) DEFAULT NULL,
+                               `port` int DEFAULT NULL,
+                               `updated_at` datetime DEFAULT NULL,
+                               `hostname` varchar(150) DEFAULT NULL,
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `mac` (`mac`,`ip`,`dhcp_server`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1794,17 +1808,17 @@ DROP TABLE IF EXISTS `radius_binding_status`;
 /*!50001 DROP VIEW IF EXISTS `radius_binding_status`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `radius_binding_status` AS SELECT 
- 1 AS `binding_id`,
- 1 AS `binding_mac`,
- 1 AS `real_mac`,
- 1 AS `switch`,
- 1 AS `port`,
- 1 AS `hostname`,
- 1 AS `status`,
- 1 AS `binding_ip`,
- 1 AS `attached_ip`,
- 1 AS `active`*/;
+/*!50001 CREATE VIEW `radius_binding_status` AS SELECT
+                                                    1 AS `binding_id`,
+                                                    1 AS `binding_mac`,
+                                                    1 AS `real_mac`,
+                                                    1 AS `switch`,
+                                                    1 AS `port`,
+                                                    1 AS `hostname`,
+                                                    1 AS `status`,
+                                                    1 AS `binding_ip`,
+                                                    1 AS `attached_ip`,
+                                                    1 AS `active`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1815,12 +1829,12 @@ DROP TABLE IF EXISTS `schedule_calendar_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule_calendar_types` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `name` varchar(100) NOT NULL,
-  `work_type` enum('WORK','CALLCENTRE','FREE') NOT NULL,
-  `colors` json NOT NULL,
-  PRIMARY KEY (`id`)
+                                           `id` int NOT NULL AUTO_INCREMENT,
+                                           `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                           `name` varchar(100) NOT NULL,
+                                           `work_type` enum('WORK','CALLCENTRE','FREE') NOT NULL,
+                                           `colors` json NOT NULL,
+                                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1842,22 +1856,22 @@ DROP TABLE IF EXISTS `schedule_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule_list` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL,
-  `calendar_id` int NOT NULL,
-  `employee_id` int unsigned NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `is_all_day` tinyint NOT NULL DEFAULT '0',
-  `created_employee_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_calendar_id_fk` (`calendar_id`),
-  KEY `schedule_list_ibfk_1` (`employee_id`),
-  CONSTRAINT `schedule_calendar_id_fk` FOREIGN KEY (`calendar_id`) REFERENCES `schedule_calendar_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `schedule_list_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                 `updated_at` datetime NOT NULL,
+                                 `calendar_id` int NOT NULL,
+                                 `employee_id` int unsigned NOT NULL,
+                                 `start` datetime NOT NULL,
+                                 `end` datetime NOT NULL,
+                                 `title` varchar(255) NOT NULL,
+                                 `is_all_day` tinyint NOT NULL DEFAULT '0',
+                                 `created_employee_id` int DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `schedule_calendar_id_fk` (`calendar_id`),
+                                 KEY `schedule_list_ibfk_1` (`employee_id`),
+                                 CONSTRAINT `schedule_calendar_id_fk` FOREIGN KEY (`calendar_id`) REFERENCES `schedule_calendar_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                 CONSTRAINT `schedule_list_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1877,15 +1891,15 @@ DROP TABLE IF EXISTS `schedule_list_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule_list_groups` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `schedule_id` int unsigned NOT NULL,
-  `group_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `schedule_id` (`schedule_id`,`group_id`),
-  KEY `group_id` (`group_id`),
-  CONSTRAINT `schedule_list_groups_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedule_list` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `schedule_list_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                                        `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                        `schedule_id` int unsigned NOT NULL,
+                                        `group_id` int NOT NULL,
+                                        PRIMARY KEY (`id`),
+                                        UNIQUE KEY `schedule_id` (`schedule_id`,`group_id`),
+                                        KEY `group_id` (`group_id`),
+                                        CONSTRAINT `schedule_list_groups_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedule_list` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        CONSTRAINT `schedule_list_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `addr_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1905,21 +1919,21 @@ DROP TABLE IF EXISTS `shedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shedule` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `generator` int unsigned NOT NULL,
-  `method` varchar(50) NOT NULL,
-  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `start` timestamp NULL DEFAULT NULL,
-  `request` varchar(600) DEFAULT NULL,
-  `response` text,
-  `begin` timestamp NULL DEFAULT NULL,
-  `finished` timestamp NULL DEFAULT NULL,
-  `code` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `generator` (`generator`),
-  KEY `action` (`method`),
-  CONSTRAINT `shedule_ibfk_1` FOREIGN KEY (`generator`) REFERENCES `shedule_kinds` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+                           `id` int unsigned NOT NULL AUTO_INCREMENT,
+                           `generator` int unsigned NOT NULL,
+                           `method` varchar(50) NOT NULL,
+                           `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                           `start` timestamp NULL DEFAULT NULL,
+                           `request` varchar(600) DEFAULT NULL,
+                           `response` text,
+                           `begin` timestamp NULL DEFAULT NULL,
+                           `finished` timestamp NULL DEFAULT NULL,
+                           `code` int DEFAULT NULL,
+                           PRIMARY KEY (`id`),
+                           KEY `generator` (`generator`),
+                           KEY `action` (`method`),
+                           CONSTRAINT `shedule_ibfk_1` FOREIGN KEY (`generator`) REFERENCES `shedule_kinds` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1928,6 +1942,7 @@ CREATE TABLE `shedule` (
 
 LOCK TABLES `shedule` WRITE;
 /*!40000 ALTER TABLE `shedule` DISABLE KEYS */;
+INSERT INTO `shedule` VALUES (1,19,'notification/sendSMS','2022-01-23 14:10:49','2022-01-23 14:10:49','{\"phone\":380634190768,\"message\":\"Послуга iнтернет за договором 1000 активована, приэмного користування\"}',NULL,'2022-01-23 14:10:50',NULL,NULL),(2,19,'notification/sendSMS','2022-01-23 14:15:35','2022-01-23 14:15:35','{\"phone\":380994339579,\"message\":\"Послуга iнтернет за договором 1000 деактивована\"}','Error sending SMS: Не достаточно параметров для выполнения функции, ','2022-01-23 14:15:35','2022-01-23 14:15:36',403);
 /*!40000 ALTER TABLE `shedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1939,11 +1954,11 @@ DROP TABLE IF EXISTS `shedule_kinds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shedule_kinds` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `parent` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `name` varchar(255) DEFAULT NULL,
+                                 `description` varchar(255) DEFAULT NULL,
+                                 `parent` int DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1965,14 +1980,14 @@ DROP TABLE IF EXISTS `smsOutgoing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `smsOutgoing` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created` timestamp NULL DEFAULT NULL,
-  `sended` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `type` int DEFAULT NULL,
-  `phone` varchar(17) DEFAULT NULL,
-  `message` varchar(160) DEFAULT NULL,
-  `uid` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                               `id` int unsigned NOT NULL AUTO_INCREMENT,
+                               `created` timestamp NULL DEFAULT NULL,
+                               `sended` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                               `type` int DEFAULT NULL,
+                               `phone` varchar(17) DEFAULT NULL,
+                               `message` varchar(160) DEFAULT NULL,
+                               `uid` varchar(50) DEFAULT NULL,
+                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1993,9 +2008,9 @@ DROP TABLE IF EXISTS `smsTypes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `smsTypes` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                            `id` int unsigned NOT NULL AUTO_INCREMENT,
+                            `name` varchar(255) DEFAULT NULL,
+                            PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2017,13 +2032,13 @@ DROP TABLE IF EXISTS `sms_send_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sms_send_list` (
-  `eid` int unsigned NOT NULL,
-  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `type` int unsigned NOT NULL,
-  KEY `eid` (`eid`),
-  KEY `type` (`type`) USING BTREE,
-  CONSTRAINT `eid` FOREIGN KEY (`eid`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `types` FOREIGN KEY (`type`) REFERENCES `sms_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                 `eid` int unsigned NOT NULL,
+                                 `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                 `type` int unsigned NOT NULL,
+                                 KEY `eid` (`eid`),
+                                 KEY `type` (`type`) USING BTREE,
+                                 CONSTRAINT `eid` FOREIGN KEY (`eid`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                 CONSTRAINT `types` FOREIGN KEY (`type`) REFERENCES `sms_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2045,10 +2060,10 @@ DROP TABLE IF EXISTS `sms_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sms_types` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                             `id` int unsigned NOT NULL AUTO_INCREMENT,
+                             `name` varchar(150) DEFAULT NULL,
+                             `type` varchar(50) DEFAULT NULL,
+                             PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2070,20 +2085,20 @@ DROP TABLE IF EXISTS `stub_page_results`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stub_page_results` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(60) NOT NULL,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `remote_addr` varchar(50) NOT NULL,
-  `agreement_id` int DEFAULT NULL,
-  `search_result` json DEFAULT NULL,
-  `error` varchar(255) DEFAULT NULL,
-  `old_mac_addr` varchar(40) DEFAULT NULL,
-  `new_mac_addr` varchar(40) DEFAULT NULL,
-  `binding_id` int DEFAULT NULL,
-  `binding_updated_at` datetime DEFAULT NULL,
-  `binding_update_result` json DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uuid` (`uuid`)
+                                     `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                     `uuid` varchar(60) NOT NULL,
+                                     `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                     `remote_addr` varchar(50) NOT NULL,
+                                     `agreement_id` int DEFAULT NULL,
+                                     `search_result` json DEFAULT NULL,
+                                     `error` varchar(255) DEFAULT NULL,
+                                     `old_mac_addr` varchar(40) DEFAULT NULL,
+                                     `new_mac_addr` varchar(40) DEFAULT NULL,
+                                     `binding_id` int DEFAULT NULL,
+                                     `binding_updated_at` datetime DEFAULT NULL,
+                                     `binding_update_result` json DEFAULT NULL,
+                                     PRIMARY KEY (`id`),
+                                     UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2104,12 +2119,12 @@ DROP TABLE IF EXISTS `system_events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `system_events` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `event_type` varchar(255) NOT NULL DEFAULT '',
-  `data` json DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+                                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                 `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                 `event_type` varchar(255) NOT NULL DEFAULT '',
+                                 `data` json DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2118,6 +2133,7 @@ CREATE TABLE `system_events` (
 
 LOCK TABLES `system_events` WRITE;
 /*!40000 ALTER TABLE `system_events` DISABLE KEYS */;
+INSERT INTO `system_events` VALUES (1,'2022-01-23 13:59:06','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service/index.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(2,'2022-01-23 13:59:06','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(3,'2022-01-23 13:59:11','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/questions.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"responsible\": \"me\"}}'),(4,'2022-01-23 13:59:13','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(5,'2022-01-23 13:59:20','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(6,'2022-01-23 14:00:23','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//equipment/bindingsAdd.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(7,'2022-01-23 14:00:26','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//equipment/edit.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(8,'2022-01-23 14:01:13','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//equipment/edit.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(9,'2022-01-23 14:01:16','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//equipment/edit.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(10,'2022-01-23 14:02:35','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/list.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(11,'2022-01-23 14:02:37','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/edit_employee.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"4\"}}'),(12,'2022-01-23 14:02:45','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/groups.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(13,'2022-01-23 14:02:46','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/group_permission.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"4\"}}'),(14,'2022-01-23 14:02:53','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/group_permission.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"4\", \"action\": \"save\", \"allowed\": [\"-1\"], \"permissions\": [\"customer_create\", \"customer_mass_messages\", \"customer_report_certs\", \"customer_deptors\", \"customer_search\", \"customer_show_card\", \"customer_change_name\", \"customer_change_provider\", \"customer_change_addr\", \"customer_stop_service\", \"customer_start_service\", \"customer_pause_service\", \"customer_resume_service\", \"customer_change_description\", \"customer_disable_agreement\", \"customer_change_notification\", \"customer_change_ack\", \"customer_change_contacts\", \"customer_change_password\", \"customer_related\", \"customer_purpose_of_payment\", \"question_create\", \"question_search\", \"question_change\", \"question_show\", \"question_report_change\", \"question_report_show\", \"payment_search\", \"payment_delete\", \"payment_show\", \"payment_create\", \"payment_source\", \"payment_summary_source\", \"payment_summary_price\", \"payment_liqpay\", \"eq_binding_search\", \"eq_binding_delete\", \"eq_binding_change_mac\", \"eq_binding_change_ip\", \"eq_binding_change_static\", \"eq_binding_change_port\", \"eq_binding_create\", \"eq_models\", \"eq_access\", \"eq_group\", \"eq_pinger\", \"eq_show\", \"eq_list\", \"eq_edit\", \"eq_create\", \"eq_delete\", \"eq_change_vlan\", \"vlan_show\", \"vlan_change\", \"network_show\", \"network_edit\", \"employees_show\", \"employees_group\", \"employees_add\", \"employees_notification\", \"employees_reaction_stat\", \"employees_schedule_show\", \"employees_schedule_edit\", \"question_loading\", \"sys_question_reason\", \"trinity_binding_add\", \"trinity_contracts\", \"trinity_search\", \"trinity_delete\", \"omo_display\", \"omo_control\"]}}'),(15,'2022-01-23 14:04:37','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(16,'2022-01-23 14:04:40','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(17,'2022-01-23 14:04:43','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"city\": \"7\", \"name\": \"\", \"email\": \"\", \"house\": \"0\", \"phone\": \"\", \"street\": \"0\", \"entrance\": \"\", \"provider\": \"1026\", \"agreement\": \"\", \"apartment\": \"\"}}'),(18,'2022-01-23 14:04:45','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"city\": \"7\", \"name\": \"\", \"email\": \"\", \"house\": \"0\", \"phone\": \"\", \"street\": \"28\", \"entrance\": \"\", \"provider\": \"1026\", \"agreement\": \"\", \"apartment\": \"\"}}'),(19,'2022-01-23 14:04:46','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"city\": \"7\", \"name\": \"\", \"email\": \"\", \"house\": \"107\", \"phone\": \"\", \"street\": \"28\", \"entrance\": \"\", \"provider\": \"1026\", \"agreement\": \"\", \"apartment\": \"\"}}'),(20,'2022-01-23 14:05:05','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"city\": \"7\", \"name\": \"Test user\", \"email\": \"max.boyar.a@gmail.com\", \"house\": \"107\", \"phone\": \"+380634190768\", \"action\": \"search\", \"street\": \"28\", \"entrance\": \"1\", \"provider\": \"1026\", \"agreement\": \"\", \"apartment\": \"11\"}}'),(21,'2022-01-23 14:05:17','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"city\": \"7\", \"name\": \"Test user\", \"email\": \"max.boyar.a@gmail.com\", \"house\": \"107\", \"phone\": \"+380634190768\", \"action\": \"search\", \"street\": \"28\", \"entrance\": \"1\", \"provider\": \"1026\", \"agreement\": \"1000\", \"apartment\": \"11\"}}'),(22,'2022-01-23 14:05:17','customer:create','{\"id\": \"1\", \"name\": \"Test user\", \"email\": \"max.boyar.a@gmail.com\", \"phone\": \"+380634190768\", \"house_id\": \"107\", \"provider\": \"1026\", \"agreement\": \"1000\", \"apartment\": \"11\", \"employee_id\": \"4\"}'),(23,'2022-01-23 14:05:17','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(24,'2022-01-23 14:05:17','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(25,'2022-01-23 14:05:37','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/new_agreement.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(26,'2022-01-23 14:05:41','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(27,'2022-01-23 14:05:47','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(28,'2022-01-23 14:05:52','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"contact\": \"\", \"agreement\": \"1001\"}}'),(29,'2022-01-23 14:05:55','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"search\": \"\", \"contact\": \"\", \"agreement\": \"\"}}'),(30,'2022-01-23 14:05:56','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(31,'2022-01-23 14:05:56','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(32,'2022-01-23 14:07:47','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(33,'2022-01-23 14:07:48','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(34,'2022-01-23 14:08:58','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(35,'2022-01-23 14:08:59','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(36,'2022-01-23 14:09:02','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"activate_credit_period\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(37,'2022-01-23 14:09:02','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(38,'2022-01-23 14:09:34','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(39,'2022-01-23 14:09:34','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(40,'2022-01-23 14:10:35','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(41,'2022-01-23 14:10:36','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(42,'2022-01-23 14:10:49','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"price\": \"44\", \"action\": \"price_start\"}}'),(43,'2022-01-23 14:10:49','activation:activate','{\"parent\": null, \"price_id\": \"44\", \"employee_id\": \"4\", \"agreement_id\": \"1\"}'),(44,'2022-01-23 14:10:49','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(45,'2022-01-23 14:10:54','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"edit_credit\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(46,'2022-01-23 14:10:54','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(47,'2022-01-23 14:10:57','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"activate_credit_period\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(48,'2022-01-23 14:10:57','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(49,'2022-01-23 14:12:27','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"activate_credit_period\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(50,'2022-01-23 14:12:27','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(51,'2022-01-23 14:13:30','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"activate_credit_period\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(52,'2022-01-23 14:13:31','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(53,'2022-01-23 14:14:28','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"activate_credit_period\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(54,'2022-01-23 14:14:28','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(55,'2022-01-23 14:14:31','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"edit_credit\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(56,'2022-01-23 14:14:32','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(57,'2022-01-23 14:14:34','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"set_custom_day_limit\", \"enable_credit\": \"1\", \"disable_limit_days\": \"0\"}}'),(58,'2022-01-23 14:14:34','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(59,'2022-01-23 14:14:38','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"send_sms\", \"sms_text\": \"Osobystyi kabinet - https://my.*\\r\\nLogin: 1000\\r\\nPassword: lqC1PB \\r\\nDyakuyemo, sho Vy z namy!\"}}'),(60,'2022-01-23 14:14:38','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(61,'2022-01-23 14:14:45','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"send_sms\", \"sms_text\": \"Osobystyi kabinet - https://my.*\\r\\nLogin: 1000\\r\\nPassword: lqC1PB \\r\\nDyakuyemo, sho Vy z namy!\"}}'),(62,'2022-01-23 14:14:45','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(63,'2022-01-23 14:14:51','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"password\", \"password\": \"lqC1PB\"}}'),(64,'2022-01-23 14:14:51','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(65,'2022-01-23 14:14:55','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"descr\": \"Test\", \"action\": \"descr\"}}'),(66,'2022-01-23 14:14:56','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(67,'2022-01-23 14:15:35','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"price\": \"1\", \"action\": \"price_stop\"}}'),(68,'2022-01-23 14:15:35','activation:deactivate','{\"sendSMS\": true, \"employee_id\": \"4\", \"activation_id\": \"1\"}'),(69,'2022-01-23 14:15:36','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(70,'2022-01-23 14:15:40','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/questions.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"responsible\": \"me\"}}'),(71,'2022-01-23 14:15:44','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(72,'2022-01-23 14:15:48','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"contact\": \"\", \"agreement\": \"1000\"}}'),(73,'2022-01-23 14:15:50','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(74,'2022-01-23 14:15:50','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(75,'2022-01-23 14:15:52','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//paymants/add.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"agreement\": \"1000\"}}'),(76,'2022-01-23 14:15:55','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//paymants/add.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"pay\": \"100\", \"type\": \"Абонплата\", \"action\": \"\", \"comment\": \"\", \"agreement\": \"1000\"}}'),(77,'2022-01-23 14:17:02','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(78,'2022-01-23 14:17:05','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/search.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"action\": \"search\", \"contact\": \"\", \"agreement\": \"1000\"}}'),(79,'2022-01-23 14:17:06','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\"}}'),(80,'2022-01-23 14:17:06','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(81,'2022-01-23 14:17:13','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"password\", \"password\": \"1000\"}}'),(82,'2022-01-23 14:17:13','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(83,'2022-01-23 14:23:22','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//abonents/detail.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": {\"id\": \"1\", \"action\": \"password\", \"password\": \"1000\"}}'),(84,'2022-01-23 14:23:22','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//users/get_token.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}'),(85,'2022-01-23 14:23:27','service:page_request','{\"user\": {\"id\": \"4\", \"mail\": null, \"name\": \"Admin\", \"rank\": \"30\", \"phone\": null, \"group_id\": \"4\", \"position\": \"Администратор\"}, \"server\": {\"SCRIPT_URL\": \"/www/service//equipment/bindings.php\", \"REMOTE_ADDR\": \"176.36.149.207\", \"HTTP_USER_AGENT\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\"}, \"request\": []}');
 /*!40000 ALTER TABLE `system_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2129,19 +2145,19 @@ DROP TABLE IF EXISTS `trinity_bindings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trinity_bindings` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created` datetime NOT NULL,
-  `activation` int NOT NULL,
-  `contract` int unsigned DEFAULT NULL,
-  `device_id` int DEFAULT NULL,
-  `mac` varchar(50) DEFAULT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `employee` int NOT NULL,
-  `local_playlist_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mac` (`mac`,`uuid`,`local_playlist_id`),
-  KEY `contract` (`contract`),
-  CONSTRAINT `trinity_bindings_ibfk_1` FOREIGN KEY (`contract`) REFERENCES `trinity_contracts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                    `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                    `created` datetime NOT NULL,
+                                    `activation` int NOT NULL,
+                                    `contract` int unsigned DEFAULT NULL,
+                                    `device_id` int DEFAULT NULL,
+                                    `mac` varchar(50) DEFAULT NULL,
+                                    `uuid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                                    `employee` int NOT NULL,
+                                    `local_playlist_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                                    PRIMARY KEY (`id`),
+                                    UNIQUE KEY `mac` (`mac`,`uuid`,`local_playlist_id`),
+                                    KEY `contract` (`contract`),
+                                    CONSTRAINT `trinity_bindings_ibfk_1` FOREIGN KEY (`contract`) REFERENCES `trinity_contracts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2162,15 +2178,15 @@ DROP TABLE IF EXISTS `trinity_contracts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trinity_contracts` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `subscr_id` int DEFAULT NULL,
-  `subscr_price` decimal(8,2) DEFAULT NULL,
-  `subscr_status_id` int DEFAULT NULL,
-  `contract_trinity` int DEFAULT NULL,
-  `devices_count` int DEFAULT NULL,
-  `contract_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+                                     `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                     `subscr_id` int DEFAULT NULL,
+                                     `subscr_price` decimal(8,2) DEFAULT NULL,
+                                     `subscr_status_id` int DEFAULT NULL,
+                                     `contract_trinity` int DEFAULT NULL,
+                                     `devices_count` int DEFAULT NULL,
+                                     `contract_date` date DEFAULT NULL,
+                                     PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2190,10 +2206,10 @@ DROP TABLE IF EXISTS `trinity_price_binding`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trinity_price_binding` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `trinity_price_id` int DEFAULT NULL,
-  `local_price_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                         `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                         `trinity_price_id` int DEFAULT NULL,
+                                         `local_price_id` int DEFAULT NULL,
+                                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2214,11 +2230,11 @@ DROP TABLE IF EXISTS `v_employee_statuses`;
 /*!50001 DROP VIEW IF EXISTS `v_employee_statuses`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `v_employee_statuses` AS SELECT 
- 1 AS `id`,
- 1 AS `status`,
- 1 AS `from_time`,
- 1 AS `last_status_id`*/;
+/*!50001 CREATE VIEW `v_employee_statuses` AS SELECT
+                                                  1 AS `id`,
+                                                  1 AS `status`,
+                                                  1 AS `from_time`,
+                                                  1 AS `last_status_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2229,10 +2245,10 @@ DROP TABLE IF EXISTS `v_eq_ping_status`;
 /*!50001 DROP VIEW IF EXISTS `v_eq_ping_status`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `v_eq_ping_status` AS SELECT 
- 1 AS `equipment`,
- 1 AS `down`,
- 1 AS `up`*/;
+/*!50001 CREATE VIEW `v_eq_ping_status` AS SELECT
+                                               1 AS `equipment`,
+                                               1 AS `down`,
+                                               1 AS `up`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2243,10 +2259,10 @@ DROP TABLE IF EXISTS `v_reaction_times`;
 /*!50001 DROP VIEW IF EXISTS `v_reaction_times`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `v_reaction_times` AS SELECT 
- 1 AS `reason_id`,
- 1 AS `house_id`,
- 1 AS `reaction_time`*/;
+/*!50001 CREATE VIEW `v_reaction_times` AS SELECT
+                                               1 AS `reason_id`,
+                                               1 AS `house_id`,
+                                               1 AS `reaction_time`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2257,12 +2273,12 @@ DROP TABLE IF EXISTS `v_trinity_contract_stat`;
 /*!50001 DROP VIEW IF EXISTS `v_trinity_contract_stat`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `v_trinity_contract_stat` AS SELECT 
- 1 AS `id`,
- 1 AS `trinity_price_id`,
- 1 AS `contract_trinity`,
- 1 AS `count_on_bindings`,
- 1 AS `count`*/;
+/*!50001 CREATE VIEW `v_trinity_contract_stat` AS SELECT
+                                                      1 AS `id`,
+                                                      1 AS `trinity_price_id`,
+                                                      1 AS `contract_trinity`,
+                                                      1 AS `count_on_bindings`,
+                                                      1 AS `count`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2273,12 +2289,12 @@ DROP TABLE IF EXISTS `view_omo_agreement_users`;
 /*!50001 DROP VIEW IF EXISTS `view_omo_agreement_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `view_omo_agreement_users` AS SELECT 
- 1 AS `id`,
- 1 AS `created_at`,
- 1 AS `uid`,
- 1 AS `phone`,
- 1 AS `agreement_id`*/;
+/*!50001 CREATE VIEW `view_omo_agreement_users` AS SELECT
+                                                       1 AS `id`,
+                                                       1 AS `created_at`,
+                                                       1 AS `uid`,
+                                                       1 AS `phone`,
+                                                       1 AS `agreement_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2289,14 +2305,14 @@ DROP TABLE IF EXISTS `walker_arp_fdb`;
 /*!50001 DROP VIEW IF EXISTS `walker_arp_fdb`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `walker_arp_fdb` AS SELECT 
- 1 AS `time`,
- 1 AS `switch`,
- 1 AS `port`,
- 1 AS `mac`,
- 1 AS `vlan`,
- 1 AS `router`,
- 1 AS `ip`*/;
+/*!50001 CREATE VIEW `walker_arp_fdb` AS SELECT
+                                             1 AS `time`,
+                                             1 AS `switch`,
+                                             1 AS `port`,
+                                             1 AS `mac`,
+                                             1 AS `vlan`,
+                                             1 AS `router`,
+                                             1 AS `ip`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2307,15 +2323,15 @@ DROP TABLE IF EXISTS `walker_fdb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `walker_fdb` (
-  `switch` varchar(15) NOT NULL,
-  `port` int NOT NULL,
-  `mac` varchar(50) NOT NULL,
-  `vlan_id` int NOT NULL,
-  `start_at` datetime NOT NULL,
-  `stop_at` datetime DEFAULT NULL,
-  `actualized` tinyint DEFAULT NULL,
-  UNIQUE KEY `switch` (`switch`,`port`,`mac`,`vlan_id`),
-  KEY `actualized` (`actualized`)
+                              `switch` varchar(15) NOT NULL,
+                              `port` int NOT NULL,
+                              `mac` varchar(50) NOT NULL,
+                              `vlan_id` int NOT NULL,
+                              `start_at` datetime NOT NULL,
+                              `stop_at` datetime DEFAULT NULL,
+                              `actualized` tinyint DEFAULT NULL,
+                              UNIQUE KEY `switch` (`switch`,`port`,`mac`,`vlan_id`),
+                              KEY `actualized` (`actualized`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2336,12 +2352,12 @@ DROP TABLE IF EXISTS `walker_incorrect_binding_mac`;
 /*!50001 DROP VIEW IF EXISTS `walker_incorrect_binding_mac`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `walker_incorrect_binding_mac` AS SELECT 
- 1 AS `agreement`,
- 1 AS `binding_id`,
- 1 AS `mac_in_binding`,
- 1 AS `real_mac`,
- 1 AS `vlan_id`*/;
+/*!50001 CREATE VIEW `walker_incorrect_binding_mac` AS SELECT
+                                                           1 AS `agreement`,
+                                                           1 AS `binding_id`,
+                                                           1 AS `mac_in_binding`,
+                                                           1 AS `real_mac`,
+                                                           1 AS `vlan_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2352,10 +2368,10 @@ DROP TABLE IF EXISTS `walker_topology`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `walker_topology` (
-  `src_mac` varchar(50) DEFAULT NULL,
-  `src_port` int DEFAULT NULL,
-  `dest_mac` varchar(50) DEFAULT NULL,
-  `dest_port` int DEFAULT NULL
+                                   `src_mac` varchar(50) DEFAULT NULL,
+                                   `src_port` int DEFAULT NULL,
+                                   `dest_mac` varchar(50) DEFAULT NULL,
+                                   `dest_port` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2376,13 +2392,13 @@ DROP TABLE IF EXISTS `walkers_arps`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `walkers_arps` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `router` varchar(15) NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  `mac` varchar(50) NOT NULL,
-  `vlan` int NOT NULL,
-  PRIMARY KEY (`id`)
+                                `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                `router` varchar(15) NOT NULL,
+                                `ip` varchar(15) NOT NULL,
+                                `mac` varchar(50) NOT NULL,
+                                `vlan` int NOT NULL,
+                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2403,10 +2419,10 @@ DROP TABLE IF EXISTS `walkers_untag_ports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `walkers_untag_ports` (
-  `switch` varchar(15) NOT NULL,
-  `port` int NOT NULL,
-  `vlan_id` int NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                       `switch` varchar(15) NOT NULL,
+                                       `port` int NOT NULL,
+                                       `vlan_id` int NOT NULL,
+                                       `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2427,13 +2443,13 @@ DROP TABLE IF EXISTS `walkers_untag_ports_fdb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `walkers_untag_ports_fdb` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `switch` varchar(15) NOT NULL,
-  `port` int NOT NULL,
-  `mac` varchar(50) NOT NULL,
-  `vlan` int NOT NULL,
-  PRIMARY KEY (`id`)
+                                           `id` int unsigned NOT NULL AUTO_INCREMENT,
+                                           `created_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                           `switch` varchar(15) NOT NULL,
+                                           `port` int NOT NULL,
+                                           `mac` varchar(50) NOT NULL,
+                                           `vlan` int NOT NULL,
+                                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2520,16 +2536,16 @@ CREATE DEFINER=`service`@`localhost` FUNCTION `get_free_agreement`() RETURNS int
     READS SQL DATA
     DETERMINISTIC
 BEGIN
-	
-SELECT agree into @freeAgree
-FROM (
-SELECT agreement + 1 agree FROM clients  WHERE agreement > 0 
-) c 
-LEFT JOIN clients exist on exist.agreement = c.agree 
-WHERE exist.agreement is null and c.agree > 0 
-ORDER BY 1 
-LIMIT 1;
-RETURN @freeAgree;
+
+    SELECT agree into @freeAgree
+    FROM (
+             SELECT agreement + 1 agree FROM clients  WHERE agreement > 0
+         ) c
+             LEFT JOIN clients exist on exist.agreement = c.agree
+    WHERE exist.agreement is null and c.agree > 0
+    ORDER BY 1
+    LIMIT 1;
+    RETURN @freeAgree;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2549,8 +2565,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `addr` AS select `h`.`id` AS `id`,`c`.`name` AS `city`,`st`.`name` AS `street`,`h`.`name` AS `house`,concat(`c`.`name`,', ',`st`.`name`,', ',`h`.`name`) AS `full_addr`,`g`.`id` AS `group_id`,`g`.`name` AS `group_name` from (((`addr_houses` `h` join `addr_streets` `st` on((`st`.`id` = `h`.`street`))) join `addr_cities` `c` on((`c`.`id` = `st`.`city`))) left join `addr_groups` `g` on((`g`.`id` = `h`.`group_id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `addr` AS select `h`.`id` AS `id`,`c`.`name` AS `city`,`st`.`name` AS `street`,`h`.`name` AS `house`,concat(`c`.`name`,', ',`st`.`name`,', ',`h`.`name`) AS `full_addr`,`g`.`id` AS `group_id`,`g`.`name` AS `group_name` from (((`addr_houses` `h` join `addr_streets` `st` on((`st`.`id` = `h`.`street`))) join `addr_cities` `c` on((`c`.`id` = `st`.`city`))) left join `addr_groups` `g` on((`g`.`id` = `h`.`group_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2567,8 +2583,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `client_balances_v` AS select `c`.`id` AS `id`,`c`.`agreement` AS `agreement`,if((`bp`.`price_month` is not null),(`c`.`balance` - ((sum(`bp`.`price_month`) / `days_in_month`()) * `days_to_end_month`())),`c`.`balance`) AS `balance` from ((`clients` `c` left join `client_prices` `p` on(((`p`.`agreement` = `c`.`id`) and (`p`.`time_stop` is null)))) left join `bill_prices` `bp` on(((`bp`.`id` = `p`.`price`) and (`bp`.`recalc_time` = 'month')))) group by `c`.`id`,`c`.`agreement`,`c`.`balance` */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `client_balances_v` AS select `c`.`id` AS `id`,`c`.`agreement` AS `agreement`,if((`bp`.`price_month` is not null),(`c`.`balance` - ((sum(`bp`.`price_month`) / `days_in_month`()) * `days_to_end_month`())),`c`.`balance`) AS `balance` from ((`clients` `c` left join `client_prices` `p` on(((`p`.`agreement` = `c`.`id`) and (`p`.`time_stop` is null)))) left join `bill_prices` `bp` on(((`bp`.`id` = `p`.`price`) and (`bp`.`recalc_time` = 'month')))) group by `c`.`id`,`c`.`agreement`,`c`.`balance` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2585,8 +2601,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `client_disable_days_last` AS select `d`.`id` AS `id`,`d`.`created` AS `created`,`d`.`created_employee` AS `created_employee`,`d`.`client` AS `client`,`d`.`days` AS `days` from (`client_disable_days` `d` join (select max(`client_disable_days`.`id`) AS `id`,`client_disable_days`.`client` AS `client` from `client_disable_days` group by `client_disable_days`.`client`) `l` on((`l`.`id` = `d`.`id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `client_disable_days_last` AS select `d`.`id` AS `id`,`d`.`created` AS `created`,`d`.`created_employee` AS `created_employee`,`d`.`client` AS `client`,`d`.`days` AS `days` from (`client_disable_days` `d` join (select max(`client_disable_days`.`id`) AS `id`,`client_disable_days`.`client` AS `client` from `client_disable_days` group by `client_disable_days`.`client`) `l` on((`l`.`id` = `d`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2603,8 +2619,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `questions_full` AS select `q`.`id` AS `id`,`q`.`agreement` AS `agreement`,`comments`.`created_at` AS `created`,`q`.`phone` AS `phone`,`r`.`id` AS `reason_id`,`r`.`name` AS `reason`,`comments`.`comment` AS `comment`,`comments`.`dest_time` AS `dest_time`,`comments`.`employee` AS `created_employee`,`reports`.`employee` AS `reported_employee`,`reports`.`status` AS `report_status`,`reports`.`created_at` AS `report_time`,`reports`.`id` AS `report_id`,`reports`.`comment` AS `report_comment`,`comments`.`responsible_employee` AS `responsible_employee`,`reports`.`amount` AS `amount`,`reports`.`cert_of_completion` AS `cert_of_completion`,`reports`.`cert_subscribed` AS `cert_subscribed` from (((((`questions` `q` left join `question_reason` `r` on((`r`.`id` = `q`.`reason`))) left join (select max(`question_responses`.`id`) AS `id`,`question_responses`.`question` AS `question` from `question_responses` group by `question_responses`.`question`) `l_resp` on((`l_resp`.`question` = `q`.`id`))) left join (select max(`question_comments`.`id`) AS `id`,`question_comments`.`question` AS `question` from `question_comments` group by `question_comments`.`question`) `l_comment` on((`l_comment`.`question` = `q`.`id`))) left join `question_comments` `comments` on((`comments`.`id` = `l_comment`.`id`))) left join `question_responses` `reports` on((`reports`.`id` = `l_resp`.`id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `questions_full` AS select `q`.`id` AS `id`,`q`.`agreement` AS `agreement`,`comments`.`created_at` AS `created`,`q`.`phone` AS `phone`,`r`.`id` AS `reason_id`,`r`.`name` AS `reason`,`comments`.`comment` AS `comment`,`comments`.`dest_time` AS `dest_time`,`comments`.`employee` AS `created_employee`,`reports`.`employee` AS `reported_employee`,`reports`.`status` AS `report_status`,`reports`.`created_at` AS `report_time`,`reports`.`id` AS `report_id`,`reports`.`comment` AS `report_comment`,`comments`.`responsible_employee` AS `responsible_employee`,`reports`.`amount` AS `amount`,`reports`.`cert_of_completion` AS `cert_of_completion`,`reports`.`cert_subscribed` AS `cert_subscribed` from (((((`questions` `q` left join `question_reason` `r` on((`r`.`id` = `q`.`reason`))) left join (select max(`question_responses`.`id`) AS `id`,`question_responses`.`question` AS `question` from `question_responses` group by `question_responses`.`question`) `l_resp` on((`l_resp`.`question` = `q`.`id`))) left join (select max(`question_comments`.`id`) AS `id`,`question_comments`.`question` AS `question` from `question_comments` group by `question_comments`.`question`) `l_comment` on((`l_comment`.`question` = `q`.`id`))) left join `question_comments` `comments` on((`comments`.`id` = `l_comment`.`id`))) left join `question_responses` `reports` on((`reports`.`id` = `l_resp`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2621,8 +2637,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `radius_binding_status` AS select `b`.`id` AS `binding_id`,`b`.`mac` AS `binding_mac`,`a`.`mac` AS `real_mac`,`a`.`switch` AS `switch`,`a`.`port` AS `port`,`a`.`hostname` AS `hostname`,'registered' AS `status`,`b`.`ip` AS `binding_ip`,`a`.`ip` AS `attached_ip`,if((`a`.`stop` is null),'active',`a`.`stop`) AS `active` from (((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`b`.`mac` = `a`.`mac`) and (`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`)))) union all select `b`.`id` AS `binding_id`,`b`.`mac` AS `binding_mac`,`a`.`mac` AS `real_mac`,`a`.`switch` AS `switch`,`a`.`port` AS `port`,`a`.`hostname` AS `hostname`,'unregistered' AS `status`,`b`.`ip` AS `binding_ip`,`a`.`ip` AS `attached_ip`,if((`a`.`stop` is null),'active',`a`.`stop`) AS `active` from ((((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`)))) left join (select `b`.`id` AS `id` from (((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`b`.`mac` = `a`.`mac`) and (`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`))))) `uns` on((`uns`.`id` = `b`.`id`))) where (`uns`.`id` is null) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `radius_binding_status` AS select `b`.`id` AS `binding_id`,`b`.`mac` AS `binding_mac`,`a`.`mac` AS `real_mac`,`a`.`switch` AS `switch`,`a`.`port` AS `port`,`a`.`hostname` AS `hostname`,'registered' AS `status`,`b`.`ip` AS `binding_ip`,`a`.`ip` AS `attached_ip`,if((`a`.`stop` is null),'active',`a`.`stop`) AS `active` from (((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`b`.`mac` = `a`.`mac`) and (`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`)))) union all select `b`.`id` AS `binding_id`,`b`.`mac` AS `binding_mac`,`a`.`mac` AS `real_mac`,`a`.`switch` AS `switch`,`a`.`port` AS `port`,`a`.`hostname` AS `hostname`,'unregistered' AS `status`,`b`.`ip` AS `binding_ip`,`a`.`ip` AS `attached_ip`,if((`a`.`stop` is null),'active',`a`.`stop`) AS `active` from ((((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`)))) left join (select `b`.`id` AS `id` from (((`radius_acct` `a` join (select max(`radius_acct`.`id`) AS `id` from `radius_acct` group by `radius_acct`.`mac`,`radius_acct`.`switch`,`radius_acct`.`port`) `f` on((`f`.`id` = `a`.`id`))) join `equipment` `e` on((`e`.`ip` = `a`.`switch`))) join `eq_bindings` `b` on(((`b`.`mac` = `a`.`mac`) and (`e`.`id` = `b`.`switch`) and (`a`.`port` = `b`.`port`))))) `uns` on((`uns`.`id` = `b`.`id`))) where (`uns`.`id` is null) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2639,8 +2655,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_employee_statuses` AS select `e`.`id` AS `id`,ifnull(if((`s`.`stop` is null),`s`.`status`,'OFFLINE'),'OFFLINE') AS `status`,ifnull(convert(if((`s`.`stop` is not null),`s`.`stop`,`s`.`start`) using utf8mb4),'0000-00-00 00:00:00') AS `from_time`,`l`.`last_id` AS `last_status_id` from ((`employees` `e` left join (select max(`employee_work_statuses`.`id`) AS `last_id`,`employee_work_statuses`.`employee_id` AS `employee_id` from `employee_work_statuses` group by `employee_work_statuses`.`employee_id`) `l` on((`l`.`employee_id` = `e`.`id`))) left join `employee_work_statuses` `s` on((`s`.`id` = `l`.`last_id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `v_employee_statuses` AS select `e`.`id` AS `id`,ifnull(if((`s`.`stop` is null),`s`.`status`,'OFFLINE'),'OFFLINE') AS `status`,ifnull(convert(if((`s`.`stop` is not null),`s`.`stop`,`s`.`start`) using utf8mb4),'0000-00-00 00:00:00') AS `from_time`,`l`.`last_id` AS `last_status_id` from ((`employees` `e` left join (select max(`employee_work_statuses`.`id`) AS `last_id`,`employee_work_statuses`.`employee_id` AS `employee_id` from `employee_work_statuses` group by `employee_work_statuses`.`employee_id`) `l` on((`l`.`employee_id` = `e`.`id`))) left join `employee_work_statuses` `s` on((`s`.`id` = `l`.`last_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2657,8 +2673,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_eq_ping_status` AS select `equipment`.`id` AS `equipment`,`equipment`.`last_ping` AS `down`,NULL AS `up` from `equipment` where (`equipment`.`ping` < 0) union select `l`.`equipment` AS `equipment`,`l`.`down` AS `down`,`l`.`up` AS `up` from (`eq_pinger_log` `l` join `equipment` `e` on((`e`.`id` = `l`.`equipment`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `v_eq_ping_status` AS select `equipment`.`id` AS `equipment`,`equipment`.`last_ping` AS `down`,NULL AS `up` from `equipment` where (`equipment`.`ping` < 0) union select `l`.`equipment` AS `equipment`,`l`.`down` AS `down`,`l`.`up` AS `up` from (`eq_pinger_log` `l` join `equipment` `e` on((`e`.`id` = `l`.`equipment`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2675,8 +2691,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_reaction_times` AS select `r`.`id` AS `reason_id`,`h`.`id` AS `house_id`,round((`r`.`reaction_time` * `gr`.`reaction_factor`),0) AS `reaction_time` from (`question_reason` `r` join (`addr_houses` `h` join `addr_groups` `gr` on((`gr`.`id` = `h`.`group_id`)))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `v_reaction_times` AS select `r`.`id` AS `reason_id`,`h`.`id` AS `house_id`,round((`r`.`reaction_time` * `gr`.`reaction_factor`),0) AS `reaction_time` from (`question_reason` `r` join (`addr_houses` `h` join `addr_groups` `gr` on((`gr`.`id` = `h`.`group_id`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2693,8 +2709,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_trinity_contract_stat` AS select `c`.`id` AS `id`,`c`.`subscr_id` AS `trinity_price_id`,`c`.`contract_trinity` AS `contract_trinity`,if((`lc`.`count` is null),0,`lc`.`count`) AS `count_on_bindings`,`c`.`devices_count` AS `count` from (`trinity_contracts` `c` left join (select `b`.`contract` AS `contract`,count(0) AS `count` from ((`trinity_bindings` `b` join `client_prices` `p` on((`p`.`id` = `b`.`activation`))) join `trinity_price_binding` `tpb` on((`tpb`.`local_price_id` = `p`.`price`))) where (`b`.`contract` is not null) group by `b`.`contract`) `lc` on((`lc`.`contract` = `c`.`id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `v_trinity_contract_stat` AS select `c`.`id` AS `id`,`c`.`subscr_id` AS `trinity_price_id`,`c`.`contract_trinity` AS `contract_trinity`,if((`lc`.`count` is null),0,`lc`.`count`) AS `count_on_bindings`,`c`.`devices_count` AS `count` from (`trinity_contracts` `c` left join (select `b`.`contract` AS `contract`,count(0) AS `count` from ((`trinity_bindings` `b` join `client_prices` `p` on((`p`.`id` = `b`.`activation`))) join `trinity_price_binding` `tpb` on((`tpb`.`local_price_id` = `p`.`price`))) where (`b`.`contract` is not null) group by `b`.`contract`) `lc` on((`lc`.`contract` = `c`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2711,8 +2727,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_omo_agreement_users` AS select ifnull(`b`.`id`,`u`.`id`) AS `id`,`u`.`created_at` AS `created_at`,`u`.`uid` AS `uid`,`u`.`phone` AS `phone`,`b`.`agreement_id` AS `agreement_id` from (`omo_users` `u` left join `omo_agreement_bindings` `b` on((`b`.`user_id` = `u`.`id`))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `view_omo_agreement_users` AS select ifnull(`b`.`id`,`u`.`id`) AS `id`,`u`.`created_at` AS `created_at`,`u`.`uid` AS `uid`,`u`.`phone` AS `phone`,`b`.`agreement_id` AS `agreement_id` from (`omo_users` `u` left join `omo_agreement_bindings` `b` on((`b`.`user_id` = `u`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2729,8 +2745,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `walker_arp_fdb` AS select `f`.`time` AS `time`,`f`.`switch` AS `switch`,`f`.`port` AS `port`,`f`.`mac` AS `mac`,`f`.`vlan` AS `vlan`,`a`.`router` AS `router`,`a`.`ip` AS `ip` from ((select max(`walkers_untag_ports_fdb`.`created_at`) AS `time`,`walkers_untag_ports_fdb`.`switch` AS `switch`,`walkers_untag_ports_fdb`.`port` AS `port`,`walkers_untag_ports_fdb`.`mac` AS `mac`,`walkers_untag_ports_fdb`.`vlan` AS `vlan` from `walkers_untag_ports_fdb` group by `walkers_untag_ports_fdb`.`switch`,`walkers_untag_ports_fdb`.`port`,`walkers_untag_ports_fdb`.`mac`,`walkers_untag_ports_fdb`.`vlan`) `f` left join (select max(`walkers_arps`.`created_at`) AS `time`,`walkers_arps`.`router` AS `router`,`walkers_arps`.`ip` AS `ip`,`walkers_arps`.`mac` AS `mac`,`walkers_arps`.`vlan` AS `vlan` from `walkers_arps` group by `walkers_arps`.`router`,`walkers_arps`.`ip`,`walkers_arps`.`mac`,`walkers_arps`.`vlan`) `a` on(((`a`.`mac` = `f`.`mac`) and (`a`.`vlan` = `f`.`vlan`)))) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `walker_arp_fdb` AS select `f`.`time` AS `time`,`f`.`switch` AS `switch`,`f`.`port` AS `port`,`f`.`mac` AS `mac`,`f`.`vlan` AS `vlan`,`a`.`router` AS `router`,`a`.`ip` AS `ip` from ((select max(`walkers_untag_ports_fdb`.`created_at`) AS `time`,`walkers_untag_ports_fdb`.`switch` AS `switch`,`walkers_untag_ports_fdb`.`port` AS `port`,`walkers_untag_ports_fdb`.`mac` AS `mac`,`walkers_untag_ports_fdb`.`vlan` AS `vlan` from `walkers_untag_ports_fdb` group by `walkers_untag_ports_fdb`.`switch`,`walkers_untag_ports_fdb`.`port`,`walkers_untag_ports_fdb`.`mac`,`walkers_untag_ports_fdb`.`vlan`) `f` left join (select max(`walkers_arps`.`created_at`) AS `time`,`walkers_arps`.`router` AS `router`,`walkers_arps`.`ip` AS `ip`,`walkers_arps`.`mac` AS `mac`,`walkers_arps`.`vlan` AS `vlan` from `walkers_arps` group by `walkers_arps`.`router`,`walkers_arps`.`ip`,`walkers_arps`.`mac`,`walkers_arps`.`vlan`) `a` on(((`a`.`mac` = `f`.`mac`) and (`a`.`vlan` = `f`.`vlan`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2747,8 +2763,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `walker_incorrect_binding_mac` AS select `c`.`agreement` AS `agreement`,`b`.`id` AS `binding_id`,`b`.`mac` AS `mac_in_binding`,`w`.`mac` AS `real_mac`,`w`.`vlan` AS `vlan_id` from ((((((`clients` `c` join `client_prices` `p` on((`p`.`agreement` = `c`.`id`))) join `eq_bindings` `b` on((`b`.`activation` = `p`.`id`))) join `equipment` `e` on((`e`.`id` = `b`.`switch`))) left join (select `b`.`switch` AS `switch`,`b`.`port` AS `port` from (`client_prices` `p` join `eq_bindings` `b` on((`b`.`activation` = `p`.`id`))) where (`p`.`time_stop` is null) group by `b`.`switch`,`b`.`port` having (count(0) > 1)) `excl` on(((`excl`.`switch` = `e`.`ip`) and (`excl`.`port` = `b`.`port`)))) left join (select `walker_arp_fdb`.`switch` AS `switch`,`walker_arp_fdb`.`port` AS `port`,count(0) AS `count_mac` from `walker_arp_fdb` group by `walker_arp_fdb`.`switch`,`walker_arp_fdb`.`port` having (count(0) > 1)) `excl_real` on(((`excl_real`.`switch` = `e`.`ip`) and (`excl_real`.`port` = `b`.`port`)))) join `walker_arp_fdb` `w` on(((`w`.`switch` = `e`.`ip`) and (`b`.`port` = `w`.`port`)))) where ((`p`.`time_stop` is null) and (`excl`.`switch` is null) and (`excl_real`.`switch` is null) and (`w`.`mac` <> `b`.`mac`)) */;
+    /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+    /*!50001 VIEW `walker_incorrect_binding_mac` AS select `c`.`agreement` AS `agreement`,`b`.`id` AS `binding_id`,`b`.`mac` AS `mac_in_binding`,`w`.`mac` AS `real_mac`,`w`.`vlan` AS `vlan_id` from ((((((`clients` `c` join `client_prices` `p` on((`p`.`agreement` = `c`.`id`))) join `eq_bindings` `b` on((`b`.`activation` = `p`.`id`))) join `equipment` `e` on((`e`.`id` = `b`.`switch`))) left join (select `b`.`switch` AS `switch`,`b`.`port` AS `port` from (`client_prices` `p` join `eq_bindings` `b` on((`b`.`activation` = `p`.`id`))) where (`p`.`time_stop` is null) group by `b`.`switch`,`b`.`port` having (count(0) > 1)) `excl` on(((`excl`.`switch` = `e`.`ip`) and (`excl`.`port` = `b`.`port`)))) left join (select `walker_arp_fdb`.`switch` AS `switch`,`walker_arp_fdb`.`port` AS `port`,count(0) AS `count_mac` from `walker_arp_fdb` group by `walker_arp_fdb`.`switch`,`walker_arp_fdb`.`port` having (count(0) > 1)) `excl_real` on(((`excl_real`.`switch` = `e`.`ip`) and (`excl_real`.`port` = `b`.`port`)))) join `walker_arp_fdb` `w` on(((`w`.`switch` = `e`.`ip`) and (`b`.`port` = `w`.`port`)))) where ((`p`.`time_stop` is null) and (`excl`.`switch` is null) and (`excl_real`.`switch` is null) and (`w`.`mac` <> `b`.`mac`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2762,10 +2778,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-23 15:01:13
-INSERT INTO employee_positions_to_house_groups (position_id, house_group_id, updated_at)
-VALUES (
-        4,
-        -1,
-        NOW()
-       );
+-- Dump completed on 2022-01-23 14:26:11
