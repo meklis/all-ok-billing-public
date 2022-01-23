@@ -115,7 +115,7 @@ class creditPeriod
 			LIMIT 1
 		) l 
 ) l LIMIT 1 ")->fetch();
-        if($activationStatus['status'] == 'frosted') {
+        if($activationStatus && $activationStatus['status'] == 'frosted') {
             $psth = dbConnPDO()->prepare("
                             SELECT p.id act_id
                 FROM client_prices p 
@@ -131,7 +131,7 @@ class creditPeriod
                 activations::defrost($act['act_id'],$employeeId);
             }
             BillingDisableDay::recalcDisableDay($agreementId);
-        } elseif ($activationStatus['status'] != 'active') {
+        } elseif ($activationStatus && $activationStatus['status'] != 'active') {
             throw new \Exception("Не найдено активных или приостановленных активаций. Сначало подключите услугу");
         }
         self::enableCredit($agreementId,$employeeId);

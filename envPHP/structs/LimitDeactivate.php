@@ -31,7 +31,7 @@ class LimitDeactivate
 
     function fillByClient(Client $client) {
         $data = dbConn()->query("SELECT id, created, created_employee, client, days FROM `client_disable_days` WHERE client =  {$client->getId()} ORDER BY id desc LIMIT 1;")->fetch_assoc();
-        if($data['id']) {
+        if($data && $data['id']) {
            $this->employee = (new Employee())->fillById($data['created_employee']);
            $this->client = $client;
            $this->days = $data['days'];

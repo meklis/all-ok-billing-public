@@ -2763,3 +2763,9 @@ DELIMITER ;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-01-23 15:01:13
+INSERT INTO employee_positions_to_house_groups (position_id, house_group_id, updated_at)
+VALUES (
+        4,
+        -1,
+        NOW()
+       );

@@ -55,7 +55,7 @@ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 
 echo "Configure files ..." && sleep 1
-mkdir -p /var/log/all-ok-billing
+mkdir -p /var/log/all-ok-billing/api
 mkdir -p /www
 cp -rT ./ /www
 cd /www
@@ -72,6 +72,7 @@ cat <<EOT >> /etc/hosts
 127.0.0.1 service.local
 127.0.0.1 gw.local
 127.0.0.1 sw.local
+127.0.0.1 my.local
 EOT
 
 echo "Install crontabs ..." && sleep 1

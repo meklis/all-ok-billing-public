@@ -357,17 +357,21 @@ LEFT JOIN employees ec on ec.id = closed_employee
 LEFT JOIN employees eo on eo.id = created_employee 
 WHERE client_id = '{$form['id']}' 
 ORDER BY c.id desc LIMIT 1 ")->fetch_assoc();
-if ($credit_period_info['status'] == 'OPEN' && $form['balance'] <= 0) {
+if ($credit_period_info && $credit_period_info['status'] == 'OPEN' && $form['balance'] <= 0) {
     $ht['credit_status'] = "Состояние: <span style='color: red; font-weight: bold;'>АКТИВИРОВАН, ИСПОЛЬЗУЕТСЯ</span> <br>Активировал: {$credit_period_info['created_employee']}, {$credit_period_info['created']}";
     $ht['credit_status'] .= "<button disabled class='btn btn-primary btn-block btnPdn'>Выключение кредитного периода запрещено</button>";
-} else if (in_array($credit_period_info['status'], ['', 'CLOSED', 'CANCEL', 'DIACTIVATED'])) {
+} else if ($credit_period_info &&  in_array($credit_period_info['status'], ['', 'CLOSED', 'CANCEL', 'DIACTIVATED'])) {
     $ht['credit_status'] = "Состояние: <span style='color: gray; font-weight: bold;'>НЕ АКТИВЕН</span> <br>Последняя активация: {$credit_period_info['created_employee']}, {$credit_period_info['created']}";
     $ht['credit_status'] .= "<button name='action' value='activate_credit_period' class='btn btn-primary btn-block btnPdn btn-sm  '>Активировать кредитный период</button> <small>Услуги будут автоматически возобновлены, если на данный момент приостановлены</small>";
-} else if (in_array($credit_period_info['status'], ['OPEN'])) {
+} else if ($credit_period_info && in_array($credit_period_info['status'], ['OPEN'])) {
     $ht['credit_status'] = "Состояние: <span style='color: darkgreen; font-weight: bold;'>АКТИВИРОВАН</span> <br>Последняя активация: {$credit_period_info['created_employee']}, {$credit_period_info['created']}";
     $ht['credit_status'] .= "<button name='action' value='deactivate_credit_period' class='btn btn-primary btn-block btnPdn btn-sm  '>Деактивировать кредитный период</button>";
+} else if (!$credit_period_info) {
+    $ht['credit_status'] = "Состояние: <span style='color: gray; font-weight: bold;'>НЕ АКТИВЕН</span> <br>Последняя активация: еще не использовался";
+    $ht['credit_status'] .= "<button name='action' value='activate_credit_period' class='btn btn-primary btn-block btnPdn btn-sm  '>Активировать кредитный период</button> <small>Услуги будут автоматически возобновлены, если на данный момент приостановлены</small>";
+
 } else {
-    $ht['credit_status'] = "Состояние: НЕ ИЗВЕСТНО, ЧТО ТО ПОШЛО НЕ ТАК";
+    $ht['credit_status'] = "Состояние: НЕ ИЗВЕСТНО";
 }
 $ht['credit_period_enabled'] = $form['enable_credit_period'] > 0 ? "CHECKED" : "";
 #endregion
@@ -533,7 +537,7 @@ LEFT JOIN employees ed on ed.id = p.deact_employee_id
 WHERE agreement = '{$form['id']}' 
 ORDER BY p.id desc 
 LIMIT 1 ")->fetch_assoc();
-if ($d['time_start']) {
+if ($d && $d['time_start']) {
     if ($d['time_start']) {
         $ht['activation_name_info'] .= "<span style='color: darkgreen;'>Активировал - <b>{$d['activated']}</b></span><br>";
     }

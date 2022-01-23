@@ -18,23 +18,22 @@ return function () {
                     <li>
                         <nobr style="color:grey;"><i
                                     class="fas fa-lg fa-at"></i><a
-                                    href="mailto:kibass@ukr.net"> :
+                                    href="mailto:all-ok-billing"> :
                                 kibass@ukr.net</a></nobr>
                     </li>
                     <li>
                         <nobr style="color:grey;"><i
                                     class="fab fa-lg fa-telegram"></i><a
-                                    href="https://t.me/GoldenNetUaBot"> :
+                                    href="https://t.me/all-ok-billing"> :
                                 TelegramBot</a></nobr>
                     </li>
-                    <li><a style="color:steelblue;font-size:19px;" href="tel:0973544545"><i class="fas fa-lg fa-phone"></i>097 354 4545</a></li> 
-                     <li><a style="color:red;font-size:19px;" href="tel:0993544545"><i class="fas fa-lg fa-phone"></i>099 354 4545</a></li>
+                    <li><a style="color:steelblue;font-size:19px;" href="tel:0631234567"><i class="fas fa-lg fa-phone"></i>0631234567</a></li> 
+                     <li><a style="color:red;font-size:19px;" href="tel:0631234567"><i class="fas fa-lg fa-phone"></i>0631234567</a></li>
                     <li><a style="color:red;font-size:19px;"
-                           href="tel:0933544545"><i
-                                    class="fas fa-lg fa-phone"></i>093 354 4545</a>
+                           href="tel:0631234567"><i
+                                    class="fas fa-lg fa-phone"></i>0631234567</a>
                     </li>
-                  <!--  <li><a style="color:black;font-size:19px;" href="tel:0443344540"><i class="fas fa-lg fa-phone"></i>044 334 4540</a> </li> -->
-                </ul>
+                   </ul>
 
             </div>
         </div>

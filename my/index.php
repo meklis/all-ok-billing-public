@@ -203,9 +203,6 @@ case 'questions':
 /*case 'zabbix':
       $HTML .= $PAGE_ZABBIX($client->getBindings());
       break;*/
-case 'ott':
-      $HTML .= $PAGE_OTT($client, $form);
-      break;
     default:
         $HTML .= "<h3 align='center' style='padding-top: 30px; padding-bottom: 30px'>{{PAGE_NOT_FOUND}}</h3>";
 }

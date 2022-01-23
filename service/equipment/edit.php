@@ -150,7 +150,7 @@ $addr = [
     'street_id' => 0,
     'house_id' => 0,
 ];
-if ($sw['id'] != '') {
+if ($sw && $sw['id'] != '') {
     $addr = $sql->query("SELECT c.id city_id, s.id street_id, h.id house_id 
 											FROM addr_houses h 
 											JOIN addr_streets s on s.id = h.street
