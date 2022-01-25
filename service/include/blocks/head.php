@@ -204,7 +204,7 @@ if (\envPHP\service\PSC::isGrpPermitted('equipments')) {
     $data .= '<li><a><i class="fa fa-cogs"></i>Железки<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">';
     $data .= $display('eq_pinger', '<li><a href="/equipment/pinger">Пингер (mobile)</a></li>');
-    $data .= $display('eq_pinger', '<li><a href="/sw/">Свитчер</a></li>');
+    $data .= $display('eq_pinger', '<li><a href="' . conf('BASE.wildcore') . '">Свитчер</a></li>');
     $data .= $display('eq_binding_create', '<li><a href="/equipment/bindingsAdd">Внести привязку</a></li>');
     $data .= $display('eq_show', '<li><a href="/equipment/list">Список железок</a></li>');
     $data .= $display('eq_create', '<li><a href="/equipment/edit">Внести железку</a></li>');
